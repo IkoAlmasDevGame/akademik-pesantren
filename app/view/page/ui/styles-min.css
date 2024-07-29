@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman';
+    font-weight: 500;
+}
+
+.panel-heading {
+    font-size: 21px;
+    font-style: normal;
+    font-variant: small-caps;
+    letter-spacing: 2px;
+}
+
+.modal-header + .modal-title {
+    font-size: 15px;
+    font-family: 'Times New Roman';
+    font-weight: 500;
+    font-style: normal;
+}
+
+.card-title {
+    font-size: 18px;
+    font-style: normal;
+    font-family: Tahoma;
+    letter-spacing: 1px;
+}
+
+.table-layout {
+    table-layout: fixed;
+    border-width: 1px;
+    border-style: ridge;
+    border-collapse: collapse;
+    border-color: darkgray;
+    text-align: center;
+    font-size: 14px;
+}
+
+.table-layout-2 {
+    table-layout: fixed;
+    border-width: 1px;
+    border-style: ridge;
+    border-collapse: collapse;
+    border-color: darkgray;
+    padding-left: 2px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.fa-refresh {
+    animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    
+    to {
+        transform: rotate(360deg);
+    }
+}
