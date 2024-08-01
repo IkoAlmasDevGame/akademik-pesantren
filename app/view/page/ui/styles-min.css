@@ -13,7 +13,7 @@
     letter-spacing: 2px;
 }
 
-.modal-header + .modal-title {
+.modal-header > .modal-title {
     font-size: 15px;
     font-family: 'Times New Roman';
     font-weight: 500;
@@ -28,24 +28,28 @@
 }
 
 .table-layout {
-    table-layout: fixed;
-    border-width: 1px;
-    border-style: ridge;
-    border-collapse: collapse;
-    border-color: darkgray;
-    text-align: center;
     font-size: 14px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px;
+    border-style: ridge;
+    width: 100%;
+    padding: 16px;
 }
 
 .table-layout-2 {
-    table-layout: fixed;
-    border-width: 1px;
-    border-style: ridge;
-    border-collapse: collapse;
-    border-color: darkgray;
-    padding-left: 2px;
-    text-align: center;
     font-size: 14px;
+    border: 1px;
+    border-style: ridge;
+    padding: 12px;
+}
+
+.table-layout-3 {
+    border-top: 0;
+}
+
+.table-layout-4 {
+    border-bottom: 0;
 }
 
 .fa-refresh {

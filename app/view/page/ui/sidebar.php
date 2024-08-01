@@ -93,6 +93,11 @@ if($_SESSION['role'] == "superadmin"){
                     <span>Kelas</span>
                     <i class="fa-brands fa-meetup fs-5 ms-auto"></i>
                 </a>
+                <a href="?page=pekerjaan" aria-current="page" class="nav-link">
+                    <i class="bi bi-circle-fill fa-1x"></i>
+                    <span>Pekerjaan</span>
+                    <i class="fa fa-user-injured fs-5 ms-auto"></i>
+                </a>
                 <!-- <a href="" aria-current="page" class="nav-link">
                     <i class="bi bi-circle-fill fa-1x"></i>
                     <span>SPP</span>

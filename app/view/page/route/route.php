@@ -7,10 +7,15 @@ $row = mysqli_fetch_array($name);
 /* Model Akademik Pesantren */
 require_once("../../../model/model_pengguna.php");
 require_once("../../../model/model_pendaftaran.php");
+require_once("../../../model/model_kerjaan.php");
 $userAuth = new model\userAuthentication($konfigs);
+$regAuths = new model\pendaftaran($konfigs);
+$workname = new model\WorkName($konfigs);
 /* Controller Akademik Pesantren */ 
 require_once("../../../controller/controller.php");
 $Authuser = new controller\Authentication($konfigs);
+$Authregs = new controller\registerd($konfigs);
+$AuthWork = new controller\pekerjaan($konfigs);
 
 if(!isset($_GET['page'])){
     require_once("../dashboard/index.php");
@@ -22,6 +27,10 @@ if(!isset($_GET['page'])){
             
         case 'pendaftaran-santri':
             require_once("../pendaftaran/pendaftaran.php");
+            break;
+            
+        case 'pekerjaan':
+            require_once("../pekerjaan/pekerjaan.php");
             break;
         
         case 'keluar':
@@ -49,13 +58,22 @@ if(!isset($_GET['aksi'])){
         case 'tambah-pendaftaran-santri':
             require_once("../pendaftaran/tambah.php");
             break;
-        case 'ubah-pendaftaran':
+        case 'ubah-pendaftaran-santri':
             require_once("../pendaftaran/ubah.php");
             break;
-            case 'value':
-                # code...
+            case 'tambah-santri':
+                $Authregs->buat();
+                break;
+            case 'hapus-santri':
+                # code 
                 break;
         /* Aksi Pendaftaran */
+
+        /* Aksi Pekerjaan */
+        case 'tambah-pekerjaan':
+            $AuthWork->buat();
+            break; 
+        /* Aksi Pekerjaan */
         default:
             require_once("../../../controller/controller.php");
             break;

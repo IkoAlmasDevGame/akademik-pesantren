@@ -16,11 +16,11 @@
 <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script crossorigin="anonymous" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 <script crossorigin="anonymous" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-<script type="text/javascript" crossorigin="anonymous">
+<script>
 /* Settings DataTables */
 new DataTable('#example1', {
         search: {
-            return: true,
+            return: false,
         },
     },
     $(document).ready(function() {
@@ -75,6 +75,39 @@ jQuery(document).ready(function($) {
         });
     });
 });
+
+function previewImage(input) {
+    const file = input.files[0];
+    if (file) {
+        const preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(file);
+        preview.onload = function() {
+            URL.revokeObjectURL(preview.src); // Free memory
+        };
+    }
+}
+
+function previewImageAyah(input) {
+    const file = input.files[0];
+    if (file) {
+        const preview = document.getElementById('preview_ayah');
+        preview.src = URL.createObjectURL(file);
+        preview.onload = function() {
+            URL.revokeObjectURL(preview.src); // Free memory
+        };
+    }
+}
+
+function previewImageIbu(input) {
+    const file = input.files[0];
+    if (file) {
+        const preview = document.getElementById('preview_ibu');
+        preview.src = URL.createObjectURL(file);
+        preview.onload = function() {
+            URL.revokeObjectURL(preview.src); // Free memory
+        };
+    }
+}
 </script>
 </body>
 
