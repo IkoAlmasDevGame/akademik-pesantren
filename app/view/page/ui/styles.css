@@ -27,21 +27,61 @@
     letter-spacing: 1px;
 }
 
+.table-layout-santri {
+    font-size: 14px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px;
+    border-style: ridge;
+    width: 1336px;
+}
+
+@media (min-width: 1336px) {
+    .table-layout-santri {
+        min-width: 100%;
+    }
+}
+
+.width {
+    min-width: 48px;
+    text-align: center;
+}
+
+@media (max-width: 64px) {
+    .width {
+        max-width: 64px;
+        text-align: center;
+    }
+}
+
+.table-layout-santri-2 {
+    font-size: 14px;
+    border: 1px;
+    border-style: ridge;
+    height: 100px;
+    width: min-content;
+}
+
 .table-layout {
     font-size: 14px;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px;
     border-style: ridge;
-    width: 100%;
-    padding: 16px;
+    width: 1230px;
+}
+
+@media (min-width: 1230px) {
+    .table-layout{
+        min-width: 100%;
+    }
 }
 
 .table-layout-2 {
     font-size: 14px;
     border: 1px;
     border-style: ridge;
-    padding: 12px;
+    padding: 8px;
 }
 
 .table-layout-3 {

@@ -88,6 +88,11 @@ if($_SESSION['role'] == "superadmin"){
                     <span>Guru</span>
                     <i class="fa fa-users fs-5 ms-auto"></i>
                 </a>
+                <a href="?page=petugas" aria-current="page" class="nav-link">
+                    <i class="bi bi-circle-fill fa-1x"></i>
+                    <span>Petugas</span>
+                    <i class="fa fa-users fs-5 ms-auto"></i>
+                </a>
                 <a href="" aria-current="page" class="nav-link">
                     <i class="bi bi-circle-fill fa-1x"></i>
                     <span>Kelas</span>

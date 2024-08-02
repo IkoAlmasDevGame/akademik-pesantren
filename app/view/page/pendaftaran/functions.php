@@ -25,6 +25,18 @@ function kelamin($jenis){
     }
 }
 
+function jenjang($jenjang){
+    if($jenjang == "1"){
+        echo "Madrasah Ibtidaiyah";
+    }elseif($jenjang == "2"){
+        echo "Madrasah Tsanawiyah";
+    }elseif($jenjang == "3"){
+        echo "Madrasah Aliyah";        
+    }else{
+        echo "Tidak ada Jenjang Sekolah";
+    }
+}
+
 if(isset($_GET['info'])){
     if($_GET['info'] == "bertambah"){
 ?>

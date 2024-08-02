@@ -32,6 +32,10 @@ if(!isset($_GET['page'])){
         case 'pekerjaan':
             require_once("../pekerjaan/pekerjaan.php");
             break;
+            
+        case 'petugas':
+            require_once("../petugas/petugas.php");
+            break;
         
         case 'keluar':
             if(isset($_SESSION['status'])){
@@ -65,13 +69,16 @@ if(!isset($_GET['aksi'])){
                 $Authregs->buat();
                 break;
             case 'hapus-santri':
-                # code 
+                $Authregs->hapus();
                 break;
         /* Aksi Pendaftaran */
 
         /* Aksi Pekerjaan */
         case 'tambah-pekerjaan':
             $AuthWork->buat();
+            break; 
+        case 'hapus-pekerjaan':
+            $AuthWork->hapus();
             break; 
         /* Aksi Pekerjaan */
         default:

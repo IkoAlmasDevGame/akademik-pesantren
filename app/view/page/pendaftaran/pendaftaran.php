@@ -20,7 +20,7 @@
 
     <body>
         <?php require_once("../ui/sidebar.php") ?>
-        <div class="panel panel-default bg-body-secondary">
+        <div class="panel container panel-default bg-body-secondary">
             <h4 class="panel-heading">Pendaftaran Santri</h4>
             <div class="panel-body">
                 <div class="d-flex justify-content-end align-items-end flex-wrap mx-2">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-4">
+        <div class="card container mb-4">
             <div class="card-header py-2">
                 <div class="container">
                     <h4 class="card-title">Data Pendaftaran Santri</h4>
@@ -62,19 +62,20 @@
                 <div class="container">
                     <div class="table-responsive">
                         <div class="d-table">
-                            <table class="table-layout" id="example1">
+                            <table class="table-layout-santri" id="example1">
                                 <thead>
                                     <tr>
-                                        <th class="table-layout-2 text-center">No.</th>
-                                        <th class="table-layout-2 text-center">Nisn Santri</th>
-                                        <th class="table-layout-2 text-center">Nama Santri</th>
-                                        <th class="table-layout-2 text-center">Tempat Lahir</th>
-                                        <th class="table-layout-2 text-center">Tanggal Lahir</th>
-                                        <th class="table-layout-2 text-center">Jenis Kelamin</th>
-                                        <th class="table-layout-2 text-center">Agama Santri</th>
-                                        <th class="table-layout-2 text-center">Photo Santri</th>
-                                        <th class="table-layout-2 text-center">Document</th>
-                                        <th class="table-layout-2 text-center">Optional</th>
+                                        <th class="table-layout-santri-2 width text-center">No.</th>
+                                        <th class="table-layout-santri-2 text-center">Nisn Santri</th>
+                                        <th class="table-layout-santri-2 text-center">Nama Santri</th>
+                                        <th class="table-layout-santri-2 text-center">Tempat Lahir</th>
+                                        <th class="table-layout-santri-2 text-center">Tanggal Lahir</th>
+                                        <th class="table-layout-santri-2 text-center">Jenis Kelamin</th>
+                                        <th class="table-layout-santri-2 text-center">Agama Santri</th>
+                                        <th class="table-layout-santri-2 text-center">Photo Santri</th>
+                                        <th class="table-layout-santri-2 text-center">Jenjang Sekolah</th>
+                                        <th class="table-layout-santri-2 text-center">Document</th>
+                                        <th class="table-layout-santri-2 text-center">Optional</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,28 +87,36 @@
                                         while($isi = mysqli_fetch_array($data)){
                                     ?>
                                     <tr>
-                                        <td class="table-layout-2 text-center"><?php echo $no; ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['nisn_santri'] ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['nama_santri'] ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['tmpt_lahir'] ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['tgl_lahir'] ?></td>
-                                        <td class="table-layout-2 text-center">
+                                        <td class="table-layout-santri-2 width"><?php echo $no; ?></td>
+                                        <td class="table-layout-santri-2 text-center">
+                                            <?php echo $isi['nisn_santri'] ?></td>
+                                        <td class="table-layout-santri-2 text-center">
+                                            <?php echo $isi['nama_santri'] ?></td>
+                                        <td class="table-layout-santri-2 text-center"><?php echo $isi['tmpt_lahir'] ?>
+                                        </td>
+                                        <td class="table-layout-santri-2 text-center"><?php echo $isi['tgl_lahir'] ?>
+                                        </td>
+                                        <td class="table-layout-santri-2 text-center">
                                             <?php echo kelamin($isi['jenis_kelamin']) ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo agama($isi['agama']) ?></td>
-                                        <td class="table-layout-2 text-center">
+                                        <td class="table-layout-santri-2 text-center">
+                                            <?php echo agama($isi['agama']) ?></td>
+                                        <td class="table-layout-santri-2 text-center">
                                             <?php $base = "../../../../assets/photo/".$isi['photo_src']; ?>
                                             <img src="<?php echo $base; ?>" alt="<?php echo $isi['nama_santri'] ?>"
                                                 class="img-responsive" width="100">
                                         </td>
-                                        <td class="table-layout-2 text-center">
+                                        <td class="table-layout-santri-2 text-center">
+                                            <?php echo jenjang($isi['jenjang']) ?>
+                                        </td>
+                                        <td class="table-layout-santri-2 text-center">
                                             <a href="" data-bs-target="#modalTreeView<?php echo $isi['id_santri']?>"
                                                 data-bs-toggle="modal" aria-current="page"
                                                 class="btn btn-outline-primary rounded-3">
                                                 <i class="fa fa-file fa-1x"></i>
                                             </a>
                                         </td>
-                                        <td class="table-layout-2 text-center">
-                                            <a href=""
+                                        <td class="table-layout-santri-2 text-center">
+                                            <a href="?aksi=hapus-santri&id_santri=<?php echo $isi['id_santri']?>"
                                                 onclick="return confirm('apakah anda ingin menghapus data ini ?')"
                                                 aria-current="page" class="btn-sm btn btn-danger">
                                                 <i class="fa fa-trash-alt fa-1x"></i>

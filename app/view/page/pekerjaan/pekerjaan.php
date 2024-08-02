@@ -20,7 +20,7 @@
 
     <body>
         <?php require_once("../ui/sidebar.php") ?>
-        <div class="panel panel-default bg-body-secondary">
+        <div class="panel panel-default container bg-body-secondary">
             <h4 class="panel-heading">Data Master Pekerjaan</h4>
             <div class="panel-body">
                 <div class="d-flex justify-content-end align-items-end flex-wrap mx-2">
@@ -37,96 +37,92 @@
                 </div>
             </div>
         </div>
-        <div class="card shadow mb-4">
+        <div class="card container shadow mb-4">
             <div class="card-header py-2">
                 <h4 class="card-title"></h4>
-                <div class="container">
-                    <button type="button" data-bs-target="#collapseWidthExample" data-bs-toggle="collapse"
-                        aria-controls="collapseWidthExample" class="btn btn-primary" aria-expanded="false">
-                        <?php if(isset($_GET['edit'])){ ?>
-                        <span>Edit Pekerjaan</span>
-                        <?php }else{ ?>
-                        <span>Tambah Pekerjaan</span>
-                        <?php } ?>
-                    </button>
-                    <div class="collapse collapse-horizontal" id="collapseWidthExample">
-                        <div class="col-sm-3">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-2">
-                                    <?php if(isset($_GET['edit'])){ ?>
-                                    <h4 class="card-title">Edit Pekerjaan</h4>
-                                    <?php }else{ ?>
-                                    <h4 class="card-title">Tambah Pekerjaan</h4>
-                                    <?php } ?>
-                                </div>
-                                <form action="?aksi=tambah-pekerjaan" method="post">
-                                    <?php 
+                <button type="button" data-bs-target="#collapseWidthExample" data-bs-toggle="collapse"
+                    aria-controls="collapseWidthExample" class="btn btn-primary" aria-expanded="false">
+                    <?php if(isset($_GET['edit'])){ ?>
+                    <span>Edit Pekerjaan</span>
+                    <?php }else{ ?>
+                    <span>Tambah Pekerjaan</span>
+                    <?php } ?>
+                </button>
+                <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                    <div class="col-sm-3">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-2">
+                                <?php if(isset($_GET['edit'])){ ?>
+                                <h4 class="card-title">Edit Pekerjaan</h4>
+                                <?php }else{ ?>
+                                <h4 class="card-title">Tambah Pekerjaan</h4>
+                                <?php } ?>
+                            </div>
+                            <form action="?aksi=tambah-pekerjaan" method="post">
+                                <?php 
                                     if(isset($_GET['edit'])){
                                         $id = htmlspecialchars($_GET['edit']);
                                         $sql = "SELECT * FROM pekerjaan WHERE id_pekerjaan = '$id'";
                                         $data = $konfigs->query($sql);
                                     while($s = mysqli_fetch_array($data)){
                                 ?>
-                                    <div class="card-body mt-1">
-                                        <input type="hidden" name="id_pekerjaan" value="<?php echo $id?>">
-                                        <div class="form-group">
-                                            <div class="form-inline">
-                                                <div class="form-label">
-                                                    <label for="" class="label label-default">Nama Pekerjaan</label>
-                                                </div>
-                                                <input type="text" name="nama_pekerjaan"
-                                                    value="<?php echo $s['nama_pekerjaan']?>" aria-required="TRUE"
-                                                    required class="form-control"
-                                                    placeholder="masukkan nama pekerjaan ..." id="">
+                                <div class="card-body mt-1">
+                                    <input type="hidden" name="id_pekerjaan" value="<?php echo $id?>">
+                                    <div class="form-group">
+                                        <div class="form-inline">
+                                            <div class="form-label">
+                                                <label for="" class="label label-default">Nama Pekerjaan</label>
                                             </div>
+                                            <input type="text" name="nama_pekerjaan"
+                                                value="<?php echo $s['nama_pekerjaan']?>" aria-required="TRUE" required
+                                                class="form-control" placeholder="masukkan nama pekerjaan ..." id="">
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="text-end">
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-save fa-1x"></i>
-                                                <span>Update</span>
-                                            </button>
-                                        </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-save fa-1x"></i>
+                                            <span>Update</span>
+                                        </button>
                                     </div>
-                                    <?php
+                                </div>
+                                <?php
                                     } 
                                 }else{
                                 ?>
-                                    <div class="card-body mt-1">
-                                        <div class="form-group">
-                                            <div class="form-inline">
-                                                <div class="form-label">
-                                                    <label for="" class="label label-default">Nama Pekerjaan</label>
-                                                </div>
-                                                <input type="text" name="nama_pekerjaan" aria-required="TRUE" required
-                                                    class="form-control" placeholder="masukkan nama pekerjaan ..."
-                                                    id="">
+                                <div class="card-body mt-1">
+                                    <div class="form-group">
+                                        <div class="form-inline">
+                                            <div class="form-label">
+                                                <label for="" class="label label-default">Nama Pekerjaan</label>
                                             </div>
+                                            <input type="text" name="nama_pekerjaan" aria-required="TRUE" required
+                                                class="form-control" placeholder="masukkan nama pekerjaan ..." id="">
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="text-end">
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fa fa-save fa-1x"></i>
-                                                <span>Simpan</span>
-                                            </button>
-                                            <button type="reset" class="btn btn-warning">
-                                                <i class="fa fa-eraser fa-1x"></i>
-                                                <span>Hapus</span>
-                                            </button>
-                                        </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-save fa-1x"></i>
+                                            <span>Simpan</span>
+                                        </button>
+                                        <button type="reset" class="btn btn-warning">
+                                            <i class="fa fa-eraser fa-1x"></i>
+                                            <span>Hapus</span>
+                                        </button>
                                     </div>
-                                    <?php
+                                </div>
+                                <?php
                                 }
                                 ?>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="mt-1 mb-1">
-                        <?php require_once("../pekerjaan/functions.php") ?>
-                    </div>
+                </div>
+                <div class="mt-1 mb-1">
+                    <?php require_once("../pekerjaan/functions.php") ?>
                 </div>
             </div>
             <div class="card-body mt-1">
@@ -154,9 +150,11 @@
                                     ?>
                                     <tr>
                                         <td class="table-layout-2 text-center"><?php echo $no; ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['nama_pekerjaan'] ?></td>
                                         <td class="table-layout-2 text-center">
-                                            <a href="" onclick="return confirm('Apakah anda ingin hapus data ini ?')"
+                                            <?php echo $isi['nama_pekerjaan'] ?></td>
+                                        <td class="table-layout-2 text-center">
+                                            <a href="?aksi=hapus-pekerjaan&id_pekerjaan=<?php echo $isi['id_pekerjaan']?>"
+                                                onclick="return confirm('Apakah anda ingin hapus data ini ?')"
                                                 aria-current="page" class="btn btn-danger">
                                                 <i class="fa fa-trash fa-1x"></i>
                                             </a>

@@ -55,6 +55,16 @@ class registerd {
             return false;
         }
     }
+
+    public function hapus(){
+        $id = htmlentities($_GET['id_santri']) ? htmlspecialchars($_GET['id_santri']) : $_GET['id_santri'];
+        $data = $this->konfigs->delete($id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
 class pekerjaan {
@@ -67,6 +77,16 @@ class pekerjaan {
     public function buat(){
         $nama = htmlentities($_POST['nama_pekerjaan']) ? htmlspecialchars($_POST['nama_pekerjaan']) : $_POST['nama_pekerjaan'];
         $data = $this->konfigs->create($nama);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function hapus(){
+        $id = htmlentities($_GET['id_pekerjaan']) ? htmlspecialchars($_GET['id_pekerjaan']) : $_GET['id_pekerjaan'];
+        $data = $this->konfigs->delete($id);
         if($data === true){
             return true;
         }else{

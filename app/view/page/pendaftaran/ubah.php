@@ -61,6 +61,7 @@
                                 while($isi = mysqli_fetch_array($data)){
                             ?>
                             <form action="?aksi=tambah-santri" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="id_santri" value="<?php echo $isi['id_santri']?>">
                                 <div class="d-flex justify-content-between align-items-start flex-wrap">
                                     <div class="card col-sm-4 mt-1">
                                         <div class="card-header">
@@ -74,6 +75,7 @@
                                                     </div>
                                                     <input type="text" inputmode="numeric" class="form-control"
                                                         name="nisn_santri" id=""
+                                                        value="<?php echo $isi['nisn_santri']?>"
                                                         placeholder="masukkan nisn santri baru ..." maxlength="10"
                                                         required aria-required="TRUE">
                                                 </div>
@@ -84,6 +86,7 @@
                                                     </div>
                                                     <input type="text" inputmode="" class="form-control"
                                                         name="nama_santri" id=""
+                                                        value="<?php echo $isi['nama_santri']?>"
                                                         placeholder="masukkan nama santri baru ..." maxlength="100"
                                                         required aria-required="TRUE">
                                                 </div>
@@ -92,7 +95,7 @@
                                                         <label for="" class="label label-default">Tempat Lahir</label>
                                                     </div>
                                                     <input type="text" inputmode="" class="form-control"
-                                                        name="tmpt_lahir" id=""
+                                                        name="tmpt_lahir" id="" value="<?php echo $isi['tmpt_lahir']?>"
                                                         placeholder="masukkan tempat lahir santri ..." maxlength="80"
                                                         required aria-required="TRUE">
                                                 </div>
@@ -100,7 +103,8 @@
                                                     <div class="form-label">
                                                         <label for="" class="label label-default">Tanggal Lahir</label>
                                                     </div>
-                                                    <input type="date" class="form-control" name="tgl_lahir"
+                                                    <input type="date" class="form-control"
+                                                        value="<?php echo $isi['tgl_lahir']?>" name="tgl_lahir"
                                                         id="datepicker" required aria-required="TRUE">
                                                 </div>
                                                 <div class="form-inline mt-1">
@@ -109,12 +113,14 @@
                                                     </div>
                                                     <div class="form-floating radio">
                                                         <input type="radio" class="radio radio-inline me-1"
-                                                            name="jenis_kelamin" id="" value="L" required
-                                                            aria-required="TRUE">
+                                                            name="jenis_kelamin"
+                                                            <?php if($isi['jenis_kelamin'] == "L"){?> checked <?php } ?>
+                                                            id="" value="L" required aria-required="TRUE">
                                                         Laki - Laki
                                                         <input type="radio" class="radio radio-inline ms-3 me-1"
-                                                            name="jenis_kelamin" id="" value="P" required
-                                                            aria-required="TRUE">
+                                                            name="jenis_kelamin"
+                                                            <?php if($isi['jenis_kelamin'] == "P"){?> checked <?php } ?>
+                                                            id="" value="P" required aria-required="TRUE">
                                                         Perempuan
                                                     </div>
                                                 </div>
@@ -186,7 +192,8 @@
                                                         <label for="" class="label label-default">Nama Lengkap
                                                             Ayah</label>
                                                     </div>
-                                                    <input type="text" inputmode="" class="form-control"
+                                                    <input type="text" inputmode=""
+                                                        value="<?php echo $isi['nama_ayah']?>" class="form-control"
                                                         name="nama_ayah" id=""
                                                         placeholder="masukkan nama ayah santri ..." maxlength="100"
                                                         required aria-required="TRUE">
@@ -201,7 +208,10 @@
                                                             $data = $konfigs->query("SELECT * FROM pekerjaan order by id_pekerjaan asc");
                                                             while($s = mysqli_fetch_array($data)){
                                                         ?>
-                                                        <option value="<?php echo $s['nama_pekerjaan']?>">
+                                                        <option
+                                                            <?php if($isi['nama_pekerjaan'] == $s['nama_pekerjaan']){?>
+                                                            selected <?php } ?>
+                                                            value="<?php echo $s['nama_pekerjaan']?>">
                                                             <?php echo $s['id_pekerjaan']." - ".$s['nama_pekerjaan']?>
                                                         </option>
                                                         <?php
@@ -236,9 +246,10 @@
                                                         <label for="" class="label label-default">Nama Lengkap
                                                             Ibu</label>
                                                     </div>
-                                                    <input type="text" inputmode="" class="form-control" name="nama_ibu"
-                                                        id="" placeholder="masukkan nama ibu santri ..." maxlength="100"
-                                                        required aria-required="TRUE">
+                                                    <input type="text" inputmode=""
+                                                        value="<?php echo $isi['nama_ibu']?>" class="form-control"
+                                                        name="nama_ibu" id="" placeholder="masukkan nama ibu santri ..."
+                                                        maxlength="100" required aria-required="TRUE">
                                                 </div>
                                                 <div class="form-inline mt-1">
                                                     <div class="form-label">
@@ -250,7 +261,10 @@
                                                             $data = $konfigs->query("SELECT * FROM pekerjaan order by id_pekerjaan asc");
                                                             while($a = mysqli_fetch_array($data)){
                                                         ?>
-                                                        <option value="<?php echo $a['nama_pekerjaan']?>">
+                                                        <option
+                                                            <?php if($isi['nama_pekerjaan'] == $a['nama_pekerjaan']){?>
+                                                            selected <?php } ?>
+                                                            value="<?php echo $a['nama_pekerjaan']?>">
                                                             <?php echo $a['id_pekerjaan']." - ".$a['nama_pekerjaan']?>
                                                         </option>
                                                         <?php
@@ -294,7 +308,7 @@
                                                     </div>
                                                     <textarea name="alamat_rumah" class="form-control" required
                                                         placeholder="masukkan alamat rumah ..." aria-required="TRUE"
-                                                        id=""></textarea>
+                                                        id=""><?php echo $isi['alamat_rumah']?></textarea>
                                                 </div>
                                                 <div class="form-inline mt-1">
                                                     <div class="form-label form-check-label">
@@ -302,6 +316,7 @@
                                                     </div>
                                                     <input type="text" name="kode_pos" class="form-control" required
                                                         aria-required="TRUE" maxlength="5"
+                                                        value="<?php echo $isi['kode_pos']?>"
                                                         placeholder="masukkan kode pos" inputmode="numeric" id="">
                                                 </div>
                                                 <div class="form-inline mt-1">
@@ -310,6 +325,7 @@
                                                     </div>
                                                     <input type="text" name="nomor_telepon" class="form-control"
                                                         required aria-required="TRUE" maxlength="13"
+                                                        value="<?php echo $isi['nomor_telepon']?>"
                                                         placeholder="masukkan nomor telepon" inputmode="numeric" id="">
                                                 </div>
                                             </div>

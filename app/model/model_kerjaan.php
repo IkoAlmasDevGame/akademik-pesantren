@@ -8,6 +8,24 @@ class WorkName{
         $this->db = $db;
     }
 
+    public function delete($id){
+        $id = htmlentities($_GET['id_pekerjaan']) ? htmlspecialchars($_GET['id_pekerjaan']) : $_GET['id_pekerjaan'];
+        $table = "pekerjaan";
+        $delete = "DELETE FROM $table WHERE id_pekerjaan='$id'";
+        $data = $this->db->query($delete);
+        if($data != null){
+            if($data){
+                echo "<script>document.location.href = '../ui/header.php?page=pekerjaan&info=hapus'</script>";
+                die;
+                exit;
+            }
+        }else{
+            echo "<script>document.location.href = '../ui/header.php?page=pekerjaan&info=gagal'</script>";
+            die;
+            exit;
+        }
+    }
+
     public function create($nama){
         $id = htmlentities($_POST['id_pekerjaan']) ? htmlspecialchars($_POST['id_pekerjaan']) : $_POST['id_pekerjaan'];
         $nama = htmlentities($_POST['nama_pekerjaan']) ? htmlspecialchars($_POST['nama_pekerjaan']) : $_POST['nama_pekerjaan'];
