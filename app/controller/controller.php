@@ -3,19 +3,20 @@ namespace controller;
 use model\userAuthentication;
 use model\pendaftaran;
 use model\WorkName;
+use model\people;
 
 class Authentication {
-    protected $konfigs;
-    public function __construct($konfigs)
+    protected $konfig;
+    public function __construct($konfig)
     {
-        $this->konfigs = new userAuthentication($konfigs);
+        $this->konfig = new userAuthentication($konfig);
     }
 
     public function login(){
         session_start();
         $userInput = htmlentities($_POST['userInput']) ? htmlspecialchars($_POST['userInput']) : $_POST['userInput'];
         $passInput = md5(htmlspecialchars($_POST['passInput']), false);
-        $data = $this->konfigs->signin($userInput,$passInput);
+        $data = $this->konfig->signin($userInput,$passInput);
         if($data === true){
             return true;
         }else{
@@ -25,10 +26,10 @@ class Authentication {
 }
 
 class registerd {
-    protected $konfigs;
-    public function __construct($konfigs)
+    protected $konfig;
+    public function __construct($konfig)
     {
-        $this->konfigs = new pendaftaran($konfigs);
+        $this->konfig = new pendaftaran($konfig);
     }
 
     public function buat(){
@@ -48,7 +49,7 @@ class registerd {
         $kode_pos = htmlentities($_POST['kode_pos']) ? htmlspecialchars($_POST['kode_pos']) : $_POST['kode_pos'];
         $nomor_telepon = htmlentities($_POST['nomor_telepon']) ? htmlspecialchars($_POST['nomor_telepon']) : $_POST['nomor_telepon'];
 
-        $data = $this->konfigs->create($nisn,$nama,$tmpt,$tgl,$jenis_kelamin,$agama,$jenjang,$nama_ayah,$pekerjaan_ayah,$nama_ibu,$pekerjaan_ibu,$alamat_rumah,$kode_pos,$nomor_telepon);
+        $data = $this->konfig->create($nisn,$nama,$tmpt,$tgl,$jenis_kelamin,$agama,$jenjang,$nama_ayah,$pekerjaan_ayah,$nama_ibu,$pekerjaan_ibu,$alamat_rumah,$kode_pos,$nomor_telepon);
         if($data === true){
             return true;
         }else{
@@ -58,7 +59,7 @@ class registerd {
 
     public function hapus(){
         $id = htmlentities($_GET['id_santri']) ? htmlspecialchars($_GET['id_santri']) : $_GET['id_santri'];
-        $data = $this->konfigs->delete($id);
+        $data = $this->konfig->delete($id);
         if($data === true){
             return true;
         }else{
@@ -68,15 +69,15 @@ class registerd {
 }
 
 class pekerjaan {
-    protected $konfigs;
-    public function __construct($konfigs)
+    protected $konfig;
+    public function __construct($konfig)
     {
-        $this->konfigs = new WorkName($konfigs);
+        $this->konfig = new WorkName($konfig);
     }
 
     public function buat(){
         $nama = htmlentities($_POST['nama_pekerjaan']) ? htmlspecialchars($_POST['nama_pekerjaan']) : $_POST['nama_pekerjaan'];
-        $data = $this->konfigs->create($nama);
+        $data = $this->konfig->create($nama);
         if($data === true){
             return true;
         }else{
@@ -86,7 +87,7 @@ class pekerjaan {
 
     public function hapus(){
         $id = htmlentities($_GET['id_pekerjaan']) ? htmlspecialchars($_GET['id_pekerjaan']) : $_GET['id_pekerjaan'];
-        $data = $this->konfigs->delete($id);
+        $data = $this->konfig->delete($id);
         if($data === true){
             return true;
         }else{
@@ -95,4 +96,36 @@ class pekerjaan {
     }
 }
 
+class petugas {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new people($konfig);
+    }
+
+    public function buat(){
+        $username = htmlentities($_POST['username']) ? htmlspecialchars($_POST['username']) : $_POST['username'];
+        $email = htmlentities($_POST['email']) ? htmlspecialchars($_POST['email']) : $_POST['email'];
+        $nama = htmlentities($_POST['nama']) ? htmlspecialchars($_POST['nama']) : $_POST['nama'];
+        $password = md5($_POST['password'], false);
+        $repassword = md5($_POST['repassword'], false);
+        $role = htmlentities($_POST['role']) ? htmlspecialchars($_POST['role']) : $_POST['role'];
+        $data = $this->konfig->create($username, $email, $nama, $password, $repassword, $role);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function hapus(){
+        $id = htmlentities($_GET['id_akun']) ? htmlspecialchars($_GET['id_akun']) : $_GET['id_akun'];
+        $data = $this->konfig->delete($id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
 ?>

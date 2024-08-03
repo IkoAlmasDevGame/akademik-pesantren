@@ -83,7 +83,7 @@ if($_SESSION['role'] == "superadmin"){
                     <span>Mata Pelajaran</span>
                     <i class="fa fa-book fs-5 ms-auto"></i>
                 </a>
-                <a href="" aria-current="page" class="nav-link">
+                <a href="?page=guru" aria-current="page" class="nav-link">
                     <i class="bi bi-circle-fill fa-1x"></i>
                     <span>Guru</span>
                     <i class="fa fa-users fs-5 ms-auto"></i>

@@ -108,6 +108,34 @@ function previewImageIbu(input) {
         };
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const password = document.getElementById('passwrd');
+    const repassword = document.getElementById('repasswrd');
+    const error = document.getElementById('error');
+    const success = document.getElementById('success');
+
+    function validatePasswords() {
+        if (password.value === repassword.value &&
+            password.value !== '' && repassword.value !== '') {
+            success.style.display = 'block';
+            error.style.display = 'none';
+        } else {
+            success.style.display = 'none';
+            if (password.value === '' || repassword.value === '') {
+                error.style.display = 'none';
+            } else {
+                error.style.display = 'block';
+            }
+        }
+    }
+    // Menambahkan event listener untuk 'keyup' pada kedua input
+    password.addEventListener('keyup', validatePasswords);
+    repassword.addEventListener('keyup', validatePasswords);
+    // Opsional: Validasi saat input kehilangan fokus
+    password.addEventListener('blur', validatePasswords);
+    repassword.addEventListener('blur', validatePasswords);
+});
 </script>
 </body>
 

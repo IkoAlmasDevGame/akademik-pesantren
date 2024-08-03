@@ -15,7 +15,18 @@
                 die;
                 exit;
             }
-            ?>
+        ?>
+        <style type="text/css">
+        .error {
+            color: red;
+            display: none;
+        }
+
+        .success {
+            color: green;
+            display: none;
+        }
+        </style>
     </head>
 
     <body>
@@ -64,7 +75,7 @@
                                 <h4 class="card-title">Tambah Petugas</h4>
                                 <?php } ?>
                             </div>
-                            <form action="" method="post">
+                            <form action="?aksi=tambah-petugas" method="post">
                                 <?php 
                                     if(isset($_GET['edit'])){
                                         $id = htmlspecialchars($_GET['edit']);
@@ -111,7 +122,7 @@
                                                     </div>
                                                     <input type="password" placeholder="ketikkan password baru ..."
                                                         maxlength="255" name="password" class="form-control" required
-                                                        aria-required="TRUE" id="">
+                                                        aria-required="TRUE" id="passwrd">
                                                 </div>
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -121,8 +132,13 @@
                                                     </div>
                                                     <input type="password" placeholder="ketikkan repassword ..."
                                                         maxlength="255" name="repassword" class="form-control" required
-                                                        aria-required="TRUE" id="">
+                                                        aria-required="TRUE" id="repasswrd">
                                                 </div>
+                                                <p class="error" id="error">
+                                                    Password dan Repassword anda tidak cocok</p>
+                                                <p class="success" id="success">
+                                                    Password dan Repassword anda cocok
+                                                </p>
                                             </div>
                                             <div class="form-inline">
                                                 <div class="form-label">
@@ -188,7 +204,7 @@
                                                 </div>
                                                 <input type="password" placeholder="ketikkan password baru ..."
                                                     maxlength="255" name="password" class="form-control" required
-                                                    aria-required="TRUE" id="">
+                                                    aria-required="TRUE" id="passwrd">
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -198,8 +214,13 @@
                                                 </div>
                                                 <input type="password" placeholder="ketikkan repassword ..."
                                                     maxlength="255" name="repassword" class="form-control" required
-                                                    aria-required="TRUE" id="">
+                                                    aria-required="TRUE" id="repasswrd">
                                             </div>
+                                            <p class="error" id="error">
+                                                Password dan Repassword anda tidak cocok</p>
+                                            <p class="success" id="success">
+                                                Password dan Repassword anda cocok
+                                            </p>
                                         </div>
                                         <div class="form-inline">
                                             <div class="form-label">
@@ -262,7 +283,6 @@
                                     while($isi = mysqli_fetch_array($data)){
                                     ?>
                                     <tr>
-                                        <?php if($_SESSION['role'] == "superadmin"){ ?>
                                         <td class="table-layout-2 text-center"><?php echo $no; ?></td>
                                         <td class="table-layout-2 text-center"><?php echo $isi['username'] ?></td>
                                         <td class="table-layout-2 text-center"><?php echo $isi['email'] ?></td>
@@ -271,26 +291,26 @@
                                         <td class="table-layout-2 text-center"><?php echo "Ter-Enkripsi" ?></td>
                                         <td class="table-layout-2 text-center"><?php echo $isi['role'] ?></td>
                                         <td class="table-layout-2 text-center">
+                                            <?php if($isi['role'] == "superadmin"){ ?>
                                             <a href="?page=petugas&edit=<?=$isi['id_akun']?>" aria-current="page"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="fa fa-edit fa-1x"></i>
                                             </a>
-                                        </td>
-                                        <?php }else if($_SESSION['role'] == "admin"){ ?>
-                                        <td class="table-layout-2 text-center"><?php echo $no; ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['username'] ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['email'] ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['nama'] ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo "Ter-Enkripsi" ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo "Ter-Enkripsi" ?></td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['role'] ?></td>
-                                        <a href="" aria-current="page" class="btn btn-warning btn-sm">
-                                            <i class="fa fa-edit fa-1x"></i>
-                                        </a>
-                                        <a href="" aria-current="page" class="btn btn-sm btn-danger">
-                                            <i class="fa fa-trash-alt fa-1x"></i>
-                                        </a>
-                                        <?php } ?>
+                                            <?php }else if($isi['role'] == "admin" || $_SESSION['role'] == "superadmin"){ ?>
+                                            <a href="?page=petugas&edit=<?=$isi['id_akun']?>" aria-current="page"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fa fa-edit fa-1x"></i>
+                                            </a>
+                                            <a href="?aksi=hapus-petugas&id_akun=<?=$isi['id_akun']?>"
+                                                aria-current="page"
+                                                onclick="return confirm('Apakah anda ingin menghapus data petugas ini ?')"
+                                                class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash-alt fa-1x"></i>
+                                            </a>
+                                            <?php }else{
+                                                echo "tidak ada data optional";
+                                                die;
+                                            } ?>
                                         </td>
                                     </tr>
                                     <?php

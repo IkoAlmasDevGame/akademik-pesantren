@@ -8,14 +8,17 @@ $row = mysqli_fetch_array($name);
 require_once("../../../model/model_pengguna.php");
 require_once("../../../model/model_pendaftaran.php");
 require_once("../../../model/model_kerjaan.php");
+require_once("../../../model/model_petugas.php");
 $userAuth = new model\userAuthentication($konfigs);
 $regAuths = new model\pendaftaran($konfigs);
 $workname = new model\WorkName($konfigs);
+$peopleAuths = new model\people($konfigs);
 /* Controller Akademik Pesantren */ 
 require_once("../../../controller/controller.php");
 $Authuser = new controller\Authentication($konfigs);
 $Authregs = new controller\registerd($konfigs);
 $AuthWork = new controller\pekerjaan($konfigs);
+$AuthPeople = new controller\petugas($konfigs);
 
 if(!isset($_GET['page'])){
     require_once("../dashboard/index.php");
@@ -35,6 +38,10 @@ if(!isset($_GET['page'])){
             
         case 'petugas':
             require_once("../petugas/petugas.php");
+            break;
+            
+        case 'guru':
+            require_once("../guru/guru.php");
             break;
         
         case 'keluar':
@@ -81,6 +88,31 @@ if(!isset($_GET['aksi'])){
             $AuthWork->hapus();
             break; 
         /* Aksi Pekerjaan */
+
+        /* Aksi Petugas */
+        case 'tambah-petugas':
+            $AuthPeople->buat();
+            break;
+        case 'hapus-petugas':
+            $AuthPeople->hapus();
+            break;
+        /* Aksi Petugas */
+
+        /* Aksi Guru */ 
+        case 'tambah-data-guru':
+            require_once("../guru/tambah.php");
+            break;
+        case 'ubah-data-guru':
+            require_once("../guru/tambah.php");
+            break;
+            case 'tambah-guru':
+                # code...
+                break;
+            case 'ubah-guru':
+                # code...
+                break;
+        /* Aksi Guru */ 
+
         default:
             require_once("../../../controller/controller.php");
             break;
