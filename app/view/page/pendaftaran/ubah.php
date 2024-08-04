@@ -209,7 +209,7 @@
                                                             while($s = mysqli_fetch_array($data)){
                                                         ?>
                                                         <option
-                                                            <?php if($isi['nama_pekerjaan'] == $s['nama_pekerjaan']){?>
+                                                            <?php if($isi['pekerjaan_ayah'] == $s['nama_pekerjaan']){?>
                                                             selected <?php } ?>
                                                             value="<?php echo $s['nama_pekerjaan']?>">
                                                             <?php echo $s['id_pekerjaan']." - ".$s['nama_pekerjaan']?>
@@ -262,7 +262,7 @@
                                                             while($a = mysqli_fetch_array($data)){
                                                         ?>
                                                         <option
-                                                            <?php if($isi['nama_pekerjaan'] == $a['nama_pekerjaan']){?>
+                                                            <?php if($isi['pekerjaan_ibu'] == $a['nama_pekerjaan']){?>
                                                             selected <?php } ?>
                                                             value="<?php echo $a['nama_pekerjaan']?>">
                                                             <?php echo $a['id_pekerjaan']." - ".$a['nama_pekerjaan']?>

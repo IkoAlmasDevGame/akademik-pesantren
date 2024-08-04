@@ -39,7 +39,7 @@
         </div>
         <div class="card container mb-4">
             <div class="card-header py-2">
-                <a href="" aria-current="page" class="btn btn-danger">
+                <a href="?aksi=tambah-data-guru" aria-current="page" class="btn btn-danger">
                     <i class="fa fa-plus fa-1x"></i>
                     <span>Tambah Guru</span>
                 </a>
