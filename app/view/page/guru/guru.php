@@ -47,6 +47,9 @@
                     <i class="fa fa-refresh fa-1x"></i>
                     <span>Refresh Page</span>
                 </a>
+                <div class="mt-1 mb-1">
+                    <?php require_once("../guru/functions.php") ?>
+                </div>
             </div>
             <div class="card-body mt-1">
                 <form action="" method="post">
@@ -75,7 +78,38 @@
                                         $sql = "SELECT * FROM guru order by id_guru asc";
                                         $data = $konfigs->query($sql);
                                         while($isi = mysqli_fetch_array($data)){
+                                            $exp = explode("-", $isi['tgl_lahir']);
                                     ?>
+                                    <tr>
+                                        <td class="table-layout-2 text-center"><?php echo $no; ?></td>
+                                        <td class="table-layout-2 text-center"><?php echo $isi['niptk'] ?></td>
+                                        <td class="table-layout-2 text-center"><?php echo $isi['nama_guru'] ?></td>
+                                        <td class="table-layout-2 text-center"><?php echo $isi['tmpt_lahir'] ?></td>
+                                        <td class="table-layout-2 text-center">
+                                            <?php echo $exp[2]." / ".$exp[1]." / ".$exp[0] ?></td>
+                                        <td class="table-layout-2 text-center">
+                                            <?php echo kelamin($isi['jenis_kelamin']) ?></td>
+                                        <td class="table-layout-2 text-center">
+                                            <?php $baseGuru = "../../../../assets/photo/guru/".$isi['photo_src'] ?>
+                                            <img class='img-responsive rounded-1 img-thumbnail'
+                                                alt="<?php echo $isi['nama_guru']?>" src='<?php echo $baseGuru;?>'
+                                                width="100">
+                                        </td>
+                                        <td>
+                                            <a href="?page=guru&aksi=hapus-guru&id_guru=<?php echo $isi['id_guru']?>"
+                                                aria-current="page"
+                                                onclick="return confirm('apakah data guru ini, ingin anda hapus ?')"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash-alt fa-1x"></i>
+                                            </a>
+                                            <a href="?aksi=ubah-data-guru&id_guru=<?php echo $isi['id_guru']?>"
+                                                aria-current="page"
+                                                onclick="return confirm('apakah anda ingin mengedit data ini ?')"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fa fa-1x fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                     <?php
                                     $no++;
                                         }

@@ -43,7 +43,7 @@
         </div>
         <div class="card container shadow">
             <div class="card-body">
-                <form action="" enctype="multipart/form-data" method="post">
+                <form action="?aksi=tambah-guru" enctype="multipart/form-data" method="post">
                     <div class="shadow-none mb-4 mt-4">
                         <div class="d-flex justify-content-center align-items-center flex-wrap">
                             <div class="card col-sm-6 col-md-6">
@@ -59,7 +59,7 @@
                                                 <label for="" class="label label-default">Niptk Guru</label>
                                             </div>
                                             <div class="col-sm-7 col-md-8">
-                                                <input type="text" name="" inputmode="numeric" class="form-control"
+                                                <input type="text" name="niptk" inputmode="numeric" class="form-control"
                                                     required aria-required="TRUE" aria-label="Niptk Guru"
                                                     placeholder="masukkan niptk guru ..." maxlength="16" id="">
                                                 <small>Nomor Induk Pendidik dan Tenaga Kependidikan</small>
@@ -72,7 +72,7 @@
                                                 <label for="" class="label label-default">Nama Guru</label>
                                             </div>
                                             <div class="col-sm-7 col-md-8">
-                                                <input type="text" name="" class="form-control" required
+                                                <input type="text" name="nama_guru" class="form-control" required
                                                     aria-required="TRUE" aria-label="nama Guru" maxlength="100"
                                                     placeholder="masukkan nama guru ..." id="">
                                             </div>
@@ -84,7 +84,7 @@
                                                 <label for="" class="label label-default">Tempat Lahir</label>
                                             </div>
                                             <div class="col-sm-7 col-md-8">
-                                                <input type="text" name="" class="form-control" required
+                                                <input type="text" name="tmpt_lahir" class="form-control" required
                                                     aria-required="TRUE" aria-label="Tempat Lahir Guru" maxlength="100"
                                                     placeholder="masukkan tempat lahir guru ..." id="">
                                             </div>
@@ -96,7 +96,7 @@
                                                 <label for="" class="label label-default">Tanggal Lahir</label>
                                             </div>
                                             <div class="col-sm-7 col-md-8">
-                                                <input type="date" name="" class="form-control" required
+                                                <input type="date" name="tgl_lahir" class="form-control" required
                                                     aria-required="TRUE" aria-label="Tanggal Lahir Guru"
                                                     placeholder="masukkan Tanggal Lahir guru ..." id="">
                                             </div>

@@ -4,6 +4,8 @@ use model\userAuthentication;
 use model\pendaftaran;
 use model\WorkName;
 use model\people;
+use model\Teacher;
+use model\PelajarMuslim;
 
 class Authentication {
     protected $konfig;
@@ -121,6 +123,58 @@ class petugas {
     public function hapus(){
         $id = htmlentities($_GET['id_akun']) ? htmlspecialchars($_GET['id_akun']) : $_GET['id_akun'];
         $data = $this->konfig->delete($id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class guru {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new Teacher($konfig);
+    }
+
+    public function buat(){
+        $niptk = htmlentities($_POST['niptk']) ? htmlspecialchars($_POST['niptk']) : $_POST['niptk'];
+        $nama = htmlentities($_POST['nama_guru']) ? htmlspecialchars($_POST['nama_guru']) : $_POST['nama_guru'];
+        $tmpt = htmlentities($_POST['tmpt_lahir']) ? htmlspecialchars($_POST['tmpt_lahir']) : $_POST['tmpt_lahir'];
+        $tgl = htmlentities($_POST['tgl_lahir']) ? htmlspecialchars($_POST['tgl_lahir']) : $_POST['tgl_lahir'];
+        $jenis = htmlentities($_POST['jenis_kelamin']) ? htmlspecialchars($_POST['jenis_kelamin']) : $_POST['jenis_kelamin'];
+        $data = $this->konfig->create($niptk,$nama,$tmpt,$tgl,$jenis);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function hapus(){
+        $id = htmlentities($_GET['id_guru']) ? htmlspecialchars($_GET['id_guru']) : $_GET['id_guru'];
+        $data = $this->konfig->delete($id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class Pelajar {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new PelajarMuslim($konfig);
+    }
+
+    public function buat(){
+        $santri = htmlentities($_POST['id_santri']) ? htmlspecialchars($_POST['id_santri']) : $_POST['id_santri'];
+        $kelas = htmlentities($_POST['id_kelas']) ? htmlspecialchars($_POST['id_kelas']) : $_POST['id_kelas'];
+        $guru = htmlentities($_POST['id_guru']) ? htmlspecialchars($_POST['id_guru']) : $_POST['id_guru'];
+        $data = $this->konfig->create($santri,$kelas,$guru);
         if($data === true){
             return true;
         }else{

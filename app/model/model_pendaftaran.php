@@ -55,7 +55,7 @@ class pendaftaran {
         
         if(in_array($ekstensi_photo_src, $ekstensi_diperbolehkan_foto) === true){
             if($ukuran_photo_src < 10440070){
-                move_uploaded_file($file_tmp_photo_src, "../../../../assets/photo/" . $photo_src);
+                move_uploaded_file($file_tmp_photo_src, "../../../../assets/photo/santri/" . $photo_src);
             }else{
                 echo "Tidak Dapat Ter - Upload Size Gambar";
                 exit;                
@@ -75,7 +75,7 @@ class pendaftaran {
 
         if(in_array($ekstensi_photo_src_ayah,$ekstensi_diperbolehkan_photo_src_ayah) === true){
             if($ukuran_photo_src_ayah < 10440070){
-                move_uploaded_file($file_tmp_photo_src_ayah, "../../../../assets/photo/". $photo_src_ayah);   
+                move_uploaded_file($file_tmp_photo_src_ayah, "../../../../assets/photo/orangtua/". $photo_src_ayah);   
             }else{
                 echo "Tidak Dapat Ter - Upload Size Gambar";
                 exit;                
@@ -95,7 +95,7 @@ class pendaftaran {
 
         if(in_array($ekstensi_photo_src_ibu,$ekstensi_diperbolehkan_photo_src_ibu) === true){
             if($ukuran_photo_src_ibu < 10440070){
-                move_uploaded_file($file_tmp_photo_src_ibu, "../../../../assets/photo/" . $photo_src_ibu);   
+                move_uploaded_file($file_tmp_photo_src_ibu, "../../../../assets/photo/orangtua/" . $photo_src_ibu);   
             }else{
                 echo "File Photo anda melibih dari 1mb";
                 die;

@@ -85,6 +85,7 @@
                                         $sql = "SELECT * FROM $table order by id_santri asc";
                                         $data = $konfigs->query($sql);
                                         while($isi = mysqli_fetch_array($data)){
+                                            $exp = explode("-", $isi['tgl_lahir']);
                                     ?>
                                     <tr>
                                         <td class="table-layout-2"><?php echo $no; ?></td>
@@ -94,14 +95,15 @@
                                             <?php echo $isi['nama_santri'] ?></td>
                                         <td class="table-layout-2 text-center"><?php echo $isi['tmpt_lahir'] ?>
                                         </td>
-                                        <td class="table-layout-2 text-center"><?php echo $isi['tgl_lahir'] ?>
+                                        <td class="table-layout-2 text-center">
+                                            <?php echo $exp[2]." / ".$exp[1]." / ".$exp[0] ?>
                                         </td>
                                         <td class="table-layout-2 text-center">
                                             <?php echo kelamin($isi['jenis_kelamin']) ?></td>
                                         <td class="table-layout-2 text-center">
                                             <?php echo agama($isi['agama']) ?></td>
                                         <td class="table-layout-2 text-center">
-                                            <?php $base = "../../../../assets/photo/".$isi['photo_src']; ?>
+                                            <?php $base = "../../../../assets/photo/santri/".$isi['photo_src']; ?>
                                             <img src="<?php echo $base; ?>" alt="<?php echo $isi['nama_santri'] ?>"
                                                 class="img-responsive" width="100">
                                         </td>
@@ -183,7 +185,7 @@
                                                         <div class="border-end border-top col-sm-9 my-2 py-2">
                                                             <div class="form-inline">
                                                                 <span>Photo Ayah</span>
-                                                                <?php $baseAyah = "../../../../assets/photo/".$isi['photo_src_ayah']; ?>
+                                                                <?php $baseAyah = "../../../../assets/photo/orangtua/".$isi['photo_src_ayah']; ?>
                                                                 <span class="ps-2 ms-4">:</span>
                                                                 <span class="img-thumbnail">
                                                                     <img src="<?php echo $baseAyah; ?>"
@@ -203,7 +205,7 @@
                                                         <div class="border-end border-top col-sm-9 my-2 py-2">
                                                             <div class="form-inline">
                                                                 <span>Photo Ibu</span>
-                                                                <?php $baseIbu = "../../../../assets/photo/".$isi['photo_src_ibu']; ?>
+                                                                <?php $baseIbu = "../../../../assets/photo/orangtua/".$isi['photo_src_ibu']; ?>
                                                                 <span class="ps-4 ms-3">:</span>
                                                                 <span class="img-thumbnail">
                                                                     <img src="<?php echo $baseIbu; ?>"

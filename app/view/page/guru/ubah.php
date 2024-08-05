@@ -20,4 +20,159 @@
 
     <body>
         <?php require_once("../ui/sidebar.php") ?>
+        <div class="panel container panel-default bg-body-secondary">
+            <h4 class="panel-heading">Data Master Guru</h4>
+            <div class="panel-body">
+                <div class="d-flex justify-content-end align-items-end flex-wrap mx-2">
+                    <div class="breadcrumb">
+                        <li class="breadcrumb breadcrumb-item">
+                            <a href="?page=beranda" aria-current="page"
+                                class="text-decoration-none text-primary">Beranda</a>
+                        </li>
+                        <li class="breadcrumb breadcrumb-item">
+                            <a href="?page=guru" aria-current="page" aria-label="master guru"
+                                class="text-decoration-none text-primary">Data Master Guru</a>
+                        </li>
+                        <li class="breadcrumb breadcrumb-item">
+                            <a href="?aksi=ubah-data-guru&id_guru=<?php echo $_GET['id_guru']?>" aria-current="page"
+                                aria-label="guru" class="text-decoration-none text-primary">Ubah Data Master Guru</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card container shadow">
+            <div class="card-body">
+                <?php 
+                    if(isset($_GET['id_guru'])){
+                        $id = htmlspecialchars($_GET['id_guru']);
+                        $sql = "SELECT * FROM guru WHERE id_guru = '$id'";
+                        $data = $konfigs->query($sql);
+                    while($isi = mysqli_fetch_array($data)){
+                ?>
+                <form action="?aksi=tambah-guru" enctype="multipart/form-data" method="post">
+                    <input type="hidden" name="id_guru" value="<?php echo $id?>">
+                    <div class="shadow-none mb-4 mt-4">
+                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                            <div class="card col-sm-6 col-md-6">
+                                <div class="card-body mt-1">
+                                    <div class="card-header py-2">
+                                        <h4 class="card-title text-center">Tambah Data Guru</h4>
+                                    </div>
+                                    <div class="form-group mt-1 mt-lg-1">
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Niptk Guru</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="text" name="niptk" value="<?php echo $isi['niptk']?>"
+                                                    inputmode="numeric" class="form-control" required
+                                                    aria-required="TRUE" aria-label="Niptk Guru"
+                                                    placeholder="masukkan niptk guru ..." maxlength="16" id="">
+                                                <small>Nomor Induk Pendidik dan Tenaga Kependidikan</small>
+                                            </div>
+                                        </div>
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Nama Guru</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="text" name="nama_guru"
+                                                    value="<?php echo $isi['nama_guru']?>" class="form-control" required
+                                                    aria-required="TRUE" aria-label="nama Guru" maxlength="100"
+                                                    placeholder="masukkan nama guru ..." id="">
+                                            </div>
+                                        </div>
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Tempat Lahir</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="text" name="tmpt_lahir"
+                                                    value="<?php echo $isi['tmpt_lahir']?>" class="form-control"
+                                                    required aria-required="TRUE" aria-label="Tempat Lahir Guru"
+                                                    maxlength="100" placeholder="masukkan tempat lahir guru ..." id="">
+                                            </div>
+                                        </div>
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Tanggal Lahir</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="date" name="tgl_lahir"
+                                                    value="<?php echo $isi['tgl_lahir']?>" class="form-control" required
+                                                    aria-required="TRUE" aria-label="Tanggal Lahir Guru"
+                                                    placeholder="masukkan Tanggal Lahir guru ..." id="">
+                                            </div>
+                                        </div>
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Jenis Kelamin</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="radio" name="jenis_kelamin"
+                                                    <?php if($isi['jenis_kelamin'] == "L"){?> checked <?php } ?>
+                                                    value="L" class="radio radio-inline me-1" id=""
+                                                    aria-label="Laki - Laki" required aria-required="TRUE"> Laki - Laki
+                                                <input type="radio" name="jenis_kelamin"
+                                                    <?php if($isi['jenis_kelamin'] == "P"){?> checked <?php } ?>
+                                                    value="P" class="radio radio-inline me-1 ms-1" id=""
+                                                    aria-label="Laki - Laki" required aria-required="TRUE"> Perempuan
+                                            </div>
+                                        </div>
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Photo Guru</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <div class="form-icon">
+                                                    <img <?php if($isi['photo_src']){?>
+                                                        src="../../../../assets/photo/guru/<?php echo $isi['photo_src']?>"
+                                                        <?php }else {?>
+                                                        src="https://th.bing.com/th/id/OIP.Ken-Ns27rvoun1mbm-CSJwHaHa?w=130&h=180&c=7&r=0&o=5&pid=1.7"
+                                                        <?php } ?> id="preview" alt="" width="64"
+                                                        class="img-rounded img-fluid">
+                                                </div>
+                                                <div class="form-check-input">
+                                                    <input type="file" name="photo_src" accept="image/*"
+                                                        class="form-control-file" required onchange="previewImage(this)"
+                                                        aria-required="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            Update
+                                        </button>
+                                        <a href="?page=guru" aria-current="page" class="btn btn-default">Cancel</a>
+                                        <button type="reset" class="btn btn-danger">
+                                            Hapus Semua
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <?php 
+                    }
+                }
+                ?>
+            </div>
+        </div>
         <?php require_once("../ui/footer.php") ?>

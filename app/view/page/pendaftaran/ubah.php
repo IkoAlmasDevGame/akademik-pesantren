@@ -165,7 +165,7 @@
                                                     </div>
                                                     <div class="form-icon">
                                                         <img <?php if($isi['photo_src']){
-                                                        ?> src="../../../../assets/photo/<?php echo $isi['photo_src']?>" <?php
+                                                        ?> src="../../../../assets/photo/santri/<?php echo $isi['photo_src']?>" <?php
                                                         }else{
                                                         ?> src="https://th.bing.com/th/id/OIP.Ken-Ns27rvoun1mbm-CSJwHaHa?w=130&h=180&c=7&r=0&o=5&pid=1.7" <?php
                                                         } ?> id="preview" alt="" width="64"
@@ -226,7 +226,7 @@
                                                     </div>
                                                     <div class="form-icon">
                                                         <img <?php if($isi['photo_src_ayah']){
-                                                        ?> src="../../../../assets/photo/<?php echo $isi['photo_src_ayah']?>" <?php
+                                                        ?> src="../../../../assets/photo/orangtua/<?php echo $isi['photo_src_ayah']?>" <?php
                                                         }else{
                                                         ?> src="https://th.bing.com/th/id/OIP.Ken-Ns27rvoun1mbm-CSJwHaHa?w=130&h=180&c=7&r=0&o=5&pid=1.7" <?php
                                                         } ?> id="preview" alt="" width="64"
@@ -279,7 +279,7 @@
                                                     </div>
                                                     <div class="form-icon">
                                                         <img <?php if($isi['photo_src_ibu']){
-                                                        ?> src="../../../../assets/photo/<?php echo $isi['photo_src_ibu']?>" <?php
+                                                        ?> src="../../../../assets/photo/orangtua/<?php echo $isi['photo_src_ibu']?>" <?php
                                                         }else{
                                                         ?> src="https://th.bing.com/th/id/OIP.Ken-Ns27rvoun1mbm-CSJwHaHa?w=130&h=180&c=7&r=0&o=5&pid=1.7" <?php
                                                         } ?> id="preview" alt="" width="64"

@@ -9,16 +9,22 @@ require_once("../../../model/model_pengguna.php");
 require_once("../../../model/model_pendaftaran.php");
 require_once("../../../model/model_kerjaan.php");
 require_once("../../../model/model_petugas.php");
+require_once("../../../model/model_guru.php");
+require_once("../../../model/model_santri.php");
 $userAuth = new model\userAuthentication($konfigs);
 $regAuths = new model\pendaftaran($konfigs);
 $workname = new model\WorkName($konfigs);
 $peopleAuths = new model\people($konfigs);
+$guruAuth = new model\Teacher($konfigs);
+$santriAuth = new model\PelajarMuslim($konfigs);
 /* Controller Akademik Pesantren */ 
 require_once("../../../controller/controller.php");
 $Authuser = new controller\Authentication($konfigs);
 $Authregs = new controller\registerd($konfigs);
 $AuthWork = new controller\pekerjaan($konfigs);
 $AuthPeople = new controller\petugas($konfigs);
+$AuthGuru = new controller\guru($konfigs);
+$AuthSantri = new controller\Pelajar($konfigs);
 
 if(!isset($_GET['page'])){
     require_once("../dashboard/index.php");
@@ -42,6 +48,14 @@ if(!isset($_GET['page'])){
             
         case 'guru':
             require_once("../guru/guru.php");
+            break;
+            
+        case 'santri':
+            require_once("../santri/santri.php");
+            break;
+            
+        case 'kelas':
+            require_once("../kelas/kelas.php");
             break;
         
         case 'keluar':
@@ -103,15 +117,30 @@ if(!isset($_GET['aksi'])){
             require_once("../guru/tambah.php");
             break;
         case 'ubah-data-guru':
-            require_once("../guru/tambah.php");
+            require_once("../guru/ubah.php");
             break;
             case 'tambah-guru':
-                # code...
+                $AuthGuru->buat();
                 break;
-            case 'ubah-guru':
-                # code...
+            case 'hapus-guru':
+                $AuthGuru->hapus();
                 break;
         /* Aksi Guru */ 
+
+        /* Aksi Santri Akses */
+        case 'santri-access':
+            $AuthSantri->buat();
+            break;
+        /* Aksi Santri Akses */
+
+        /* Aksi Kelas */
+        case 'tambah-data-kelas':
+            require_once("../kelas/tambah.php");
+            break;
+        case 'ubah-data-kelas':
+            require_once("../kelas/ubah.php");
+            break;
+        /* Aksi Kelas */
 
         default:
             require_once("../../../controller/controller.php");

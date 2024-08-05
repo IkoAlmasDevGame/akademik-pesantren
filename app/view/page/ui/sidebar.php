@@ -73,7 +73,7 @@ if($_SESSION['role'] == "superadmin"){
                     <span>Absensi</span>
                     <i class="fa fa-pencil fs-5 ms-auto"></i>
                 </a> -->
-                <a href="" aria-current="page" class="nav-link">
+                <a href="?page=santri" aria-current="page" class="nav-link">
                     <i class="bi bi-circle-fill fa-1x"></i>
                     <span>Santri</span>
                     <i class="fa fa-user-graduate fs-5 ms-auto"></i>
@@ -93,7 +93,7 @@ if($_SESSION['role'] == "superadmin"){
                     <span>Petugas</span>
                     <i class="fa fa-users fs-5 ms-auto"></i>
                 </a>
-                <a href="" aria-current="page" class="nav-link">
+                <a href="?page=kelas" aria-current="page" class="nav-link">
                     <i class="bi bi-circle-fill fa-1x"></i>
                     <span>Kelas</span>
                     <i class="fa-brands fa-meetup fs-5 ms-auto"></i>
@@ -218,12 +218,12 @@ if($_SESSION['role'] == "superadmin"){
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul class="nav-content collapse" id="master-nav" data-bs-parent="#sidebar-nav">
-                    <a href="" aria-current="page" class="nav-link">
+                    <a href="?page=santri" aria-current="page" class="nav-link">
                         <i class="bi bi-circle-fill fa-1x"></i>
                         <span>Santri</span>
                         <i class="fa fa-user-graduate fs-5 ms-auto"></i>
                     </a>
-                    <a href="" aria-current="page" class="nav-link">
+                    <a href="?page=kelas" aria-current="page" class="nav-link">
                         <i class="bi bi-circle-fill fa-1x"></i>
                         <span>Kelas</span>
                         <i class="fa-brands fa-meetup fs-5 ms-auto"></i>

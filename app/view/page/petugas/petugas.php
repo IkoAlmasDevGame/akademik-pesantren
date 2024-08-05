@@ -144,15 +144,12 @@
                                                 <div class="form-label">
                                                     <label for="" class="label label-default">Jabatan</label>
                                                 </div>
-                                                <?php if($_SESSION['role'] == "superadmin"){ ?>
                                                 <input type="radio" name="role" <?php if($s['role'] == "superadmin"){?>
                                                     checked <?php } ?> class="radio radio-inline mx-2"
                                                     value="superadmin" id="">Superadmin
-                                                <?php }elseif($_SESSION['role'] == "admin"){ ?>
                                                 <input type="radio" name="role" <?php if($s['role'] == "admin"){?>
                                                     checked <?php } ?> class="radio radio-inline mx-2" value="admin"
                                                     id="">Admin
-                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
@@ -291,12 +288,6 @@
                                         <td class="table-layout-2 text-center"><?php echo "Ter-Enkripsi" ?></td>
                                         <td class="table-layout-2 text-center"><?php echo $isi['role'] ?></td>
                                         <td class="table-layout-2 text-center">
-                                            <?php if($isi['role'] == "superadmin"){ ?>
-                                            <a href="?page=petugas&edit=<?=$isi['id_akun']?>" aria-current="page"
-                                                class="btn btn-warning btn-sm">
-                                                <i class="fa fa-edit fa-1x"></i>
-                                            </a>
-                                            <?php }else if($isi['role'] == "admin" || $_SESSION['role'] == "superadmin"){ ?>
                                             <a href="?page=petugas&edit=<?=$isi['id_akun']?>" aria-current="page"
                                                 class="btn btn-warning btn-sm">
                                                 <i class="fa fa-edit fa-1x"></i>
@@ -307,10 +298,6 @@
                                                 class="btn btn-sm btn-danger">
                                                 <i class="fa fa-trash-alt fa-1x"></i>
                                             </a>
-                                            <?php }else{
-                                                echo "tidak ada data optional";
-                                                die;
-                                            } ?>
                                         </td>
                                     </tr>
                                     <?php
