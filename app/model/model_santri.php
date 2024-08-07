@@ -21,9 +21,9 @@ class PelajarMuslim {
         if($cekselect['jumlah'] > 0){
             $update = "UPDATE $table SET id_kelas = '$kelas' WHERE id_reg_kelas = '$id'";
             $data = $this->db->query($update);
+            $this->db->query("UPDATE kelas SET id_guru = '$guru' WHERE id_kelas = '$kelas'");
             if($data != null){
                 if($data){
-                    $this->db->query("UPDATE kelas SET id_guru = '$guru' WHERE id_kelas = '$kelas'");
                     echo "<script>document.location.href = '../ui/header.php?page=santri'</script>";
                     die;
                     exit;
@@ -38,7 +38,6 @@ class PelajarMuslim {
             $data = $this->db->query($insert);
             if($data != null){
                 if($data){
-                    $this->db->query("INSERT INTO kelas SET id_guru = '$guru'");
                     echo "<script>document.location.href = '../ui/header.php?page=santri'</script>";
                     die;
                     exit;

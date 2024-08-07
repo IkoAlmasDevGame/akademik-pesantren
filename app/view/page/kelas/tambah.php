@@ -43,7 +43,69 @@
         </div>
         <div class="card container shadow">
             <div class="card-body">
-                <form action="" method="post"></form>
+                <form action="?aksi=tambah-kelas" method="post">
+                    <div class="shadow-none mb-4 mt-4">
+                        <div class="d-flex justify-content-center align-items-center flex-wrap">
+                            <div class="card col-sm-6 col-md-6">
+                                <div class="card-body mt-1">
+                                    <div class="card-header py-2">
+                                        <h4 class="card-title text-center">Tambah Data Kelas</h4>
+                                    </div>
+                                    <div class="form-group mt-1 mt-lg-1">
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Kode Kelas</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="text" name="kode_kelas" class="form-control" required
+                                                    aria-required="TRUE" aria-label="Kode Kelas"
+                                                    placeholder="masukkan kode kelas ..." maxlength="10" id="">
+                                            </div>
+                                        </div>
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Nama Kelas</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="text" name="nama_kelas" class="form-control" required
+                                                    aria-required="TRUE" aria-label="Nama Kelas"
+                                                    placeholder="masukkan nama kelas ..." maxlength="80" id="">
+                                            </div>
+                                        </div>
+                                        <div class="border border-top my-1"></div>
+                                        <div class="form-inline row justify-content-center
+                                             align-items-center">
+                                            <div class="form-label col-sm-4 col-md-4">
+                                                <label for="" class="label label-default">Kapasitas</label>
+                                            </div>
+                                            <div class="col-sm-7 col-md-8">
+                                                <input type="text" inputmode="numeric" name="kapasitas"
+                                                    class="form-control" required aria-required="TRUE"
+                                                    aria-label="kapasitas Kelas"
+                                                    placeholder="masukkan kapasitas kelas ..." maxlength="11" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-primary">
+                                            Simpan
+                                        </button>
+                                        <a href="?page=kelas" aria-current="page" class="btn btn-default">Cancel</a>
+                                        <button type="reset" class="btn btn-danger">
+                                            Hapus Semua
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <?php require_once("../ui/footer.php") ?>

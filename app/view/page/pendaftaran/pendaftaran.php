@@ -19,7 +19,7 @@
     </head>
 
     <body>
-        <?php require_once("../ui/sidebar.php") ?>
+        <?php require_once("../ui/sidebar.php"); ?>
         <div class="panel container panel-default bg-body-secondary">
             <h4 class="panel-heading">Pendaftaran Santri</h4>
             <div class="panel-body">
@@ -240,4 +240,4 @@
                 </div>
             </div>
         </div>
-        <?php require_once("../ui/footer.php") ?>
+        <?php require_once("../ui/footer.php"); ?>

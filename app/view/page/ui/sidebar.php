@@ -78,7 +78,7 @@ if($_SESSION['role'] == "superadmin"){
                     <span>Santri</span>
                     <i class="fa fa-user-graduate fs-5 ms-auto"></i>
                 </a>
-                <a href="" aria-current="page" class="nav-link">
+                <a href="?page=matapelajaran" aria-current="page" class="nav-link">
                     <i class="bi bi-circle-fill fa-1x"></i>
                     <span>Mata Pelajaran</span>
                     <i class="fa fa-book fs-5 ms-auto"></i>

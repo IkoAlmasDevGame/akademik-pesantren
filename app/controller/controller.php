@@ -6,6 +6,10 @@ use model\WorkName;
 use model\people;
 use model\Teacher;
 use model\PelajarMuslim;
+use model\Meetclass;
+use model\days;
+use model\waktu;
+use model\lesson;
 
 class Authentication {
     protected $konfig;
@@ -152,6 +156,17 @@ class guru {
         }
     }
 
+    public function select(){
+        $id = htmlspecialchars($_POST['id_guru']) ? htmlentities($_POST['id_guru']) : $_POST['id_guru'];
+        $status = htmlspecialchars($_POST['status']) ? htmlentities($_POST['status']) : $_POST['status'];
+        $data = $this->konfig->statusSelect($status, $id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function hapus(){
         $id = htmlentities($_GET['id_guru']) ? htmlspecialchars($_GET['id_guru']) : $_GET['id_guru'];
         $data = $this->konfig->delete($id);
@@ -175,6 +190,125 @@ class Pelajar {
         $kelas = htmlentities($_POST['id_kelas']) ? htmlspecialchars($_POST['id_kelas']) : $_POST['id_kelas'];
         $guru = htmlentities($_POST['id_guru']) ? htmlspecialchars($_POST['id_guru']) : $_POST['id_guru'];
         $data = $this->konfig->create($santri,$kelas,$guru);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class Kelas {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new Meetclass($konfig);
+    }
+
+    public function buat(){
+        $kode = htmlentities($_POST['kode_kelas']) ? htmlspecialchars($_POST['kode_kelas']) : $_POST['kode_kelas'];
+        $nama = htmlentities($_POST['nama_kelas']) ? htmlspecialchars($_POST['nama_kelas']) : $_POST['nama_kelas'];
+        $kapasitas = htmlentities($_POST['kapasitas']) ? htmlspecialchars($_POST['kapasitas']) : $_POST['kapasitas'];
+        $data = $this->konfig->create($kode, $nama, $kapasitas);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function hapus(){
+        $id = htmlentities($_GET['id_kelas']) ? htmlspecialchars($_GET['id_kelas']) : $_GET['id_kelas'];
+        $data = $this->konfig->delete($id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class Hari {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new days($konfig);
+    }
+
+    public function select(){
+        $id = htmlspecialchars($_POST['id_hari']) ? htmlentities($_POST['id_hari']) : $_POST['id_hari'];
+        $status = htmlspecialchars($_POST['status']) ? htmlentities($_POST['status']) : $_POST['status'];
+        $data = $this->konfig->statusSelect($status, $id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function buat(){
+        $nama_hari = htmlspecialchars($_POST['nama_hari']) ? htmlentities($_POST['nama_hari']) : $_POST['nama_hari'];
+        $data = $this->konfig->create($nama_hari);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class jam {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new waktu($konfig);
+    }
+
+    public function buat(){
+        $mulai = htmlentities($_POST['mulai']) ? htmlspecialchars($_POST['mulai']) : $_POST['mulai'];
+        $selesai = htmlentities($_POST['selesai']) ? htmlspecialchars($_POST['selesai']) : $_POST['selesai'];
+        $data = $this->konfig->create($mulai, $selesai);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function select(){
+        $id = htmlspecialchars($_POST['jam_ke']) ? htmlentities($_POST['jam_ke']) : $_POST['jam_ke'];
+        $status = htmlspecialchars($_POST['status']) ? htmlentities($_POST['status']) : $_POST['status'];
+        $data = $this->konfig->statusSelect($status, $id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class pelajaran{
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new lesson($konfig);
+    }
+
+    public function buat(){
+        $kode = htmlentities($_POST['kode_pelajaran']) ? htmlspecialchars($_POST['kode_pelajaran']) : $_POST['kode_pelajaran'];
+        $nama = htmlentities($_POST['nama_idn']) ? htmlspecialchars($_POST['nama_idn']) : $_POST['nama_idn'];
+        $data = $this->konfig->create($kode,$nama);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function select(){
+        $id = htmlspecialchars($_POST['id_pelajaran']) ? htmlentities($_POST['id_pelajaran']) : $_POST['id_pelajaran'];
+        $status = htmlspecialchars($_POST['status']) ? htmlentities($_POST['status']) : $_POST['status'];
+        $data = $this->konfig->statusSelect($status, $id);
         if($data === true){
             return true;
         }else{

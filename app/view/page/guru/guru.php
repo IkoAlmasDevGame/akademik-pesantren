@@ -55,6 +55,13 @@
                 <form action="" method="post">
                     <input type="search" name="cari" required aria-controls="example2_filter" id="example1_filter">
                 </form>
+                <div class="fs-6 d-flex justify-content-start align-items-start flex-wrap">
+                    Status Guru :
+                    <ol type="1">
+                        <li>Jika Tidak Aktif akan berwarna abu - abu, dan</li>
+                        <li>Jika Aktif akan berwarna biru</li>
+                    </ol>
+                </div>
                 <div class="container">
                     <div class="table-responsive">
                         <div class="d-table">
@@ -67,6 +74,7 @@
                                         <th class="table-layout-2 text-center">Tempat Lahir</th>
                                         <th class="table-layout-2 text-center">Tangal Lahir</th>
                                         <th class="table-layout-2 text-center">Jenis Kelamin</th>
+                                        <th class="table-layout-2 text-center">Status Guru</th>
                                         <th class="table-layout-2 text-center">Photo Guru</th>
                                         <th class="table-layout-2 text-center">Opsional</th>
                                     </tr>
@@ -88,14 +96,31 @@
                                         <td class="table-layout-2 text-center">
                                             <?php echo $exp[2]." / ".$exp[1]." / ".$exp[0] ?></td>
                                         <td class="table-layout-2 text-center">
-                                            <?php echo kelamin($isi['jenis_kelamin']) ?></td>
+                                            <?php echo kelamin($isi['jenis_kelamin']) ?>
+                                        </td>
+                                        <td class="table-layout-2 text-center">
+                                            <form action="?aksi=select-guru" method="post">
+                                                <input type="hidden" name="id_guru"
+                                                    value="<?php echo $isi['id_guru']?>">
+                                                <div class="form-switch form-check">
+                                                    <input type="checkbox" name="status" value="0"
+                                                        class="form-check-input" onchange="this.form.submit()"
+                                                        <?php if($isi['status'] == "0"){?> checked <?php } ?> required
+                                                        id=""> tidak aktif /
+                                                    <input type="checkbox" name="status" value="1"
+                                                        class="form-check-input" onchange="this.form.submit()"
+                                                        <?php if($isi['status'] == "1"){?> checked <?php } ?> required
+                                                        id=""> aktif
+                                                </div>
+                                            </form>
+                                        </td>
                                         <td class="table-layout-2 text-center">
                                             <?php $baseGuru = "../../../../assets/photo/guru/".$isi['photo_src'] ?>
                                             <img class='img-responsive rounded-1 img-thumbnail'
                                                 alt="<?php echo $isi['nama_guru']?>" src='<?php echo $baseGuru;?>'
                                                 width="100">
                                         </td>
-                                        <td>
+                                        <td class="table-layout-2 text-center">
                                             <a href="?page=guru&aksi=hapus-guru&id_guru=<?php echo $isi['id_guru']?>"
                                                 aria-current="page"
                                                 onclick="return confirm('apakah data guru ini, ingin anda hapus ?')"

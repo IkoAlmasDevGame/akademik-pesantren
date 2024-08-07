@@ -46,10 +46,24 @@
                 </a>
             </div>
             <div class="card-body mt-1">
-                <form action="" method="post">
-                    <input type="search" name="cari" required aria-controls="example2_filter" id="example1_filter">
-                </form>
                 <div class="container">
+                    <form action="" method="post">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <div class="col-sm-2 col-md-2 mb-1">
+                                <label for="" class="label label-default">Show Jenjang Kelas :</label>
+                                <select name="jenjang" class="form-control form-select" aria-controls="example1_length"
+                                    onchange="this.form.submit()" required id="example1_length">
+                                    <option value="">Pilih Jenjang Kelas</option>
+                                    <option value="1">Madrasah Ibtidaiyah</option>
+                                    <option value="2">Madrasah Tsanawiyah</option>
+                                    <option value="3">Madrasah Aliyah</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <form action="" method="post">
+                        <input type="search" name="cari" required aria-controls="example2_filter" id="example1_filter">
+                    </form>
                     <div class="table-responsive">
                         <div class="d-table">
                             <table class="table-layout" id="example1">
@@ -65,8 +79,9 @@
                                 <tbody>
                                     <?php 
                                         $no = 1;
-                                        $sql = "SELECT santri.*, guru.*, kelas.*, reg_kelas.* FROM santri left join reg_kelas on santri.id_santri = reg_kelas.id_santri 
-                                        left join kelas on kelas.id_kelas = reg_kelas.id_kelas left join guru on guru.id_guru = kelas.id_guru order by santri.id_santri asc";
+                                        if(isset($_POST['jenjang'])){
+                                        $jenjang = htmlspecialchars($_POST['jenjang']);
+                                        $sql = "SELECT reg_kelas.*, santri.id_santri, santri.nisn_santri, santri.nama_santri, santri.jenjang, kelas.id_kelas, kelas.nama_kelas, kelas.id_guru, guru.id_guru, guru.nama_guru FROM santri left join reg_kelas on reg_kelas.id_santri = santri.id_santri left join kelas on reg_kelas.id_kelas = kelas.id_kelas left join guru on guru.id_guru = kelas.id_guru WHERE santri.jenjang = '$jenjang' order by santri.id_santri asc";
                                         $data = $konfigs->query($sql);
                                         while ($isi = mysqli_fetch_array($data)) {
                                     ?>
@@ -83,7 +98,8 @@
                                             <input type="hidden" name="id_santri" required
                                                 value="<?php echo $isi['id_santri']?>" id="">
                                             <td class="table-layout-2 text-center">
-                                                <select name="id_kelas" required class="form-select" id="">
+                                                <select name="id_kelas" onchange="this.form.submit()" required
+                                                    class="form-select" id="">
                                                     <option value="0">Pilih Kelas</option>
                                                     <?php 
                                                         $kelas = $konfigs->query("SELECT * FROM kelas order by id_kelas asc");
@@ -98,7 +114,8 @@
                                                 </select>
                                             </td>
                                             <td class="table-layout-2 text-center">
-                                                <select name="id_guru" required class="form-select" id="">
+                                                <select name="id_guru" onchange="this.form.submit()" required
+                                                    class="form-select" id="">
                                                     <option value="0">Pilih Wali Guru</option>
                                                     <?php 
                                                         $guru = $konfigs->query("SELECT * FROM guru order by id_guru asc");
@@ -125,6 +142,7 @@
                                     <?php
                                     $no++;
                                         }
+                                    }
                                     ?>
                                 </tbody>
                             </table>

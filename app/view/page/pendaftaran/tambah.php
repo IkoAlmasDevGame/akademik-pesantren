@@ -13,13 +13,15 @@
             }else{
                 echo "<script>document.location.href = '../ui/header.php?page=beranda'</script>";
                 die;
-                exit;
+                exit;            
             }
-            ?>
+        ?>
     </head>
 
     <body>
-        <?php require_once("../ui/sidebar.php") ?>
+        <?php 
+        require_once("../ui/sidebar.php");
+        ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="panel panel-default bg-body-secondary">
@@ -310,4 +312,4 @@
                 </div>
             </div>
         </div>
-        <?php require_once("../ui/footer.php") ?>
+        <?php require_once("../ui/footer.php");  ?>

@@ -11,12 +11,20 @@ require_once("../../../model/model_kerjaan.php");
 require_once("../../../model/model_petugas.php");
 require_once("../../../model/model_guru.php");
 require_once("../../../model/model_santri.php");
+require_once("../../../model/model_kelas.php");
+require_once("../../../model/model_hari.php");
+require_once("../../../model/model_jam.php");
+require_once("../../../model/model_pelajaran.php");
 $userAuth = new model\userAuthentication($konfigs);
 $regAuths = new model\pendaftaran($konfigs);
 $workname = new model\WorkName($konfigs);
 $peopleAuths = new model\people($konfigs);
 $guruAuth = new model\Teacher($konfigs);
 $santriAuth = new model\PelajarMuslim($konfigs);
+$kelasAuth = new model\Meetclass($konfigs);
+$hariAuth = new model\days($konfigs);
+$waktuAuth = new model\waktu($konfigs);
+$LessonAuth = new model\lesson($konfigs);
 /* Controller Akademik Pesantren */ 
 require_once("../../../controller/controller.php");
 $Authuser = new controller\Authentication($konfigs);
@@ -25,9 +33,12 @@ $AuthWork = new controller\pekerjaan($konfigs);
 $AuthPeople = new controller\petugas($konfigs);
 $AuthGuru = new controller\guru($konfigs);
 $AuthSantri = new controller\Pelajar($konfigs);
+$AuthKelas = new controller\Kelas($konfigs);
+$AuthHari = new controller\Hari($konfigs);
+$AuthWaktu = new controller\jam($konfigs);
+$AuthLesson = new controller\pelajaran($konfigs);
 
 if(!isset($_GET['page'])){
-    require_once("../dashboard/index.php");
 }else{
     switch ($_GET['page']) {
         case 'beranda':
@@ -57,6 +68,22 @@ if(!isset($_GET['page'])){
         case 'kelas':
             require_once("../kelas/kelas.php");
             break;
+            
+        case 'matapelajaran':
+            require_once("../matapelajaran/mapel.php");
+            break;
+            
+        case 'jadwal-pelajaran':
+            require_once("../matapelajaran/jadwal.php");
+            break;
+            
+        case 'hari-jadwal':
+            require_once("../hari/hari.php");
+            break;
+            
+        case 'jam-jadwal':
+            require_once("../jam/jam.php");
+            break;
         
         case 'keluar':
             if(isset($_SESSION['status'])){
@@ -76,7 +103,6 @@ if(!isset($_GET['page'])){
 }
 
 if(!isset($_GET['aksi'])){
-    require_once("../../../controller/controller.php");
 }else{
     switch ($_GET['aksi']) {
         /* Aksi Pendaftaran */
@@ -122,6 +148,9 @@ if(!isset($_GET['aksi'])){
             case 'tambah-guru':
                 $AuthGuru->buat();
                 break;
+            case 'select-guru':
+                $AuthGuru->select();
+                break;
             case 'hapus-guru':
                 $AuthGuru->hapus();
                 break;
@@ -140,7 +169,40 @@ if(!isset($_GET['aksi'])){
         case 'ubah-data-kelas':
             require_once("../kelas/ubah.php");
             break;
+            case 'tambah-kelas':
+                $AuthKelas->buat();
+                break;
+            case 'hapus-kelas':
+                $AuthKelas->hapus();
+                break;
         /* Aksi Kelas */
+
+        /* Aksi Hari */
+        case 'select-hari':
+            $AuthHari->select();
+            break;
+        case 'tambah-hari':
+            $AuthHari->buat();
+            break;
+        /* Aksi Hari */
+
+        /* Aksi Jam Pelajaran */
+        case 'tambah-waktu':
+            $AuthWaktu->buat();
+            break;
+        case 'select-waktu':
+            $AuthWaktu->select();
+            break;
+        /* Aksi Jam Pelajaran */
+
+        /* Aksi Pelajaran */
+        case 'tambah-pelajaran':
+            $AuthLesson->buat();
+            break;
+        case 'select-pelajaran':
+            $AuthLesson->select();
+            break;
+        /* Aksi Pelajaran */
 
         default:
             require_once("../../../controller/controller.php");

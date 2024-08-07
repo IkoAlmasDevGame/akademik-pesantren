@@ -70,6 +70,25 @@ class Teacher {
         }
     }
 
+    public function statusSelect($status, $id){
+        $id = htmlentities($_POST['id_guru']) ? htmlspecialchars($_POST['id_guru']) : $_POST['id_guru'];
+        $status = htmlentities($_POST['status']) ? htmlspecialchars($_POST['status']) : $_POST['status'];
+        $table = "guru";
+        $updated = "UPDATE $table SET status = '$status' WHERE id_guru = '$id'";
+        $data = $this->db->query($updated);
+        if($data != null){
+            if($data){
+                echo "<script>document.location.href = '../ui/header.php?page=guru'</script>";
+                die;
+                exit;
+            }
+        }else{
+            echo "<script>document.location.href = '../ui/header.php?page=guru'</script>";
+            die;
+            exit;
+        }
+    }
+
     public function delete($id){
         $id = htmlentities($_GET['id_guru']) ? htmlspecialchars($_GET['id_guru']) : $_GET['id_guru'];
         $table = "guru";

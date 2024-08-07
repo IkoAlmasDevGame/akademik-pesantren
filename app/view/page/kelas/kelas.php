@@ -49,6 +49,9 @@
                     <i class="fa fa-1x fa-plus"></i>
                     <span>Tambah Master Kelas</span>
                 </a>
+                <div class="mt-1 mb-1">
+                    <?php require_once("../kelas/functions.php"); ?>
+                </div>
                 <?php } ?>
             </div>
             <div class="card-body mt-1">
@@ -65,11 +68,43 @@
                                         <th class="table-layout-2 text-center">Kode Kelas</th>
                                         <th class="table-layout-2 text-center">Nama Kelas</th>
                                         <th class="table-layout-2 text-center">Kapasitas</th>
-                                        <th class="table-layout-2 text-center">Wali Guru</th>
+                                        <?php if($_SESSION['role'] == "superadmin"){ ?>
                                         <th class="table-layout-2 text-center">Opsional</th>
+                                        <?php } ?>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    <?php 
+                                        $no = 1;
+                                        $sql = "SELECT * FROM kelas order by id_kelas asc";
+                                        $data = $konfigs->query($sql);
+                                        while($isi = mysqli_fetch_array($data)){
+                                    ?>
+                                    <tr>
+                                        <td class="table-layout-2 text-center"><?php echo $no; ?></td>
+                                        <td class="table-layout-2 text-center"><?php echo $isi['kode_kelas'] ?></td>
+                                        <td class="table-layout-2 text-center"><?php echo $isi['nama_kelas'] ?></td>
+                                        <td class="table-layout-2 text-center"><?php echo $isi['kapasitas']; ?></td>
+                                        <?php if($_SESSION['role'] == "superadmin"){ ?>
+                                        <td class="table-layout-2 text-center">
+                                            <a href="?aksi=ubah-data-kelas&id_kelas=<?php echo $isi['id_kelas']?>"
+                                                onclick="return confirm('')" aria-current="page"
+                                                class="btn btn-sm btn-warning">
+                                                <i class="fa fa-1x fa-edit"></i>
+                                            </a>
+                                            <a href="?aksi=hapus-kelas&id_kelas=<?php echo $isi['id_kelas']?>"
+                                                aria-current="page" onclick="return confirm('')"
+                                                class="btn btn-sm btn-danger">
+                                                <i class="fa fa-1x fa-trash"></i>
+                                            </a>
+                                        </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php
+                                    $no++;
+                                        }
+                                    ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
