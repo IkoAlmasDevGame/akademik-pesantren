@@ -5,7 +5,7 @@ if(isset($_SESSION["status"])){
             if(isset($_SESSION["nama"])){
                 if(isset($_SESSION["role"])){
                     if(isset($_COOKIE['cookies'])){
-                        if(isset($_SERVER['HTTPS']) && "on" == $_SERVER['HTTP']){
+                        if(isset($_SERVER['HTTPS']) && "on" == $_SERVER['HTTP'] || "off" == $_SERVER['HTTP']){
                             
                         }
                     }
