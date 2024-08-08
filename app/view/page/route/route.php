@@ -3,7 +3,7 @@ require_once("../../../database/koneksi.php");
 $name = mysqli_query($konfigs, "SELECT * FROM sistem WHERE flags = '1'");
 $row = mysqli_fetch_array($name);
 
-/* Mode & Controller Files */
+/* Model & Controller Files */
 /* Model Akademik Pesantren */
 require_once("../../../model/model_pengguna.php");
 require_once("../../../model/model_pendaftaran.php");
@@ -15,6 +15,9 @@ require_once("../../../model/model_kelas.php");
 require_once("../../../model/model_hari.php");
 require_once("../../../model/model_jam.php");
 require_once("../../../model/model_pelajaran.php");
+require_once("../../../model/model_spp.php");
+require_once("../../../model/model_pembayaran.php");
+/* Required File Model */
 $userAuth = new model\userAuthentication($konfigs);
 $regAuths = new model\pendaftaran($konfigs);
 $workname = new model\WorkName($konfigs);
@@ -25,6 +28,8 @@ $kelasAuth = new model\Meetclass($konfigs);
 $hariAuth = new model\days($konfigs);
 $waktuAuth = new model\waktu($konfigs);
 $LessonAuth = new model\lesson($konfigs);
+$SppAuth = new model\sppembayaran($konfigs);
+$payment = new model\pembayaran($konfigs);
 /* Controller Akademik Pesantren */ 
 require_once("../../../controller/controller.php");
 $Authuser = new controller\Authentication($konfigs);
@@ -37,6 +42,8 @@ $AuthKelas = new controller\Kelas($konfigs);
 $AuthHari = new controller\Hari($konfigs);
 $AuthWaktu = new controller\jam($konfigs);
 $AuthLesson = new controller\pelajaran($konfigs);
+$AuthSPP = new controller\spp($konfigs);
+$AuthPayment = new controller\cashpayment($konfigs);
 
 if(!isset($_GET['page'])){
 }else{
@@ -83,6 +90,14 @@ if(!isset($_GET['page'])){
             
         case 'jam-jadwal':
             require_once("../jam/jam.php");
+            break;
+            
+        case 'spp':
+            require_once("../spp/spp.php");
+            break;
+            
+        case 'pembayaran-spp':
+            require_once("../pembayaran/pembayaran.php");
             break;
         
         case 'keluar':
@@ -160,6 +175,9 @@ if(!isset($_GET['aksi'])){
         case 'santri-access':
             $AuthSantri->buat();
             break;
+        case 'santri-selection':
+            $AuthSantri->select();
+            break;
         /* Aksi Santri Akses */
 
         /* Aksi Kelas */
@@ -203,6 +221,20 @@ if(!isset($_GET['aksi'])){
             $AuthLesson->select();
             break;
         /* Aksi Pelajaran */
+
+        /* Aksi SPPembayaran */
+        case 'tambah-spp':
+            $AuthSPP->buat();
+            break;
+        case 'hapus-spp':
+            $AuthSPP->hapus();
+            break;
+        /* Aksi SPPembayaran */
+
+        /* Aksi Payemnt */
+        case 'bayar-spp':
+            $AuthPayment->getpayment();
+            break;
 
         default:
             require_once("../../../controller/controller.php");

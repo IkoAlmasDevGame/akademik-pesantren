@@ -7,6 +7,25 @@ class PelajarMuslim {
     {
         $this->db = $db;
     }
+    
+    public function statusSelect($status, $id_santri){
+        $id_santri = htmlentities($_POST['id_santri']) ? htmlspecialchars($_POST['id_santri']) : $_POST['id_santri'];
+        $status = htmlentities($_POST['status']) ? htmlspecialchars($_POST['status']) : $_POST['status'];
+        $table = "santri";
+        $updated = "UPDATE $table SET status = '$status' WHERE id_santri='$id_santri'";
+        $data = $this->db->query($updated);
+        if($data != null){
+            if($data){
+                echo "<script>document.location.href = '../ui/header.php?page=pendaftaran-santri'</script>";
+                die;
+                exit;
+            }
+        }else{
+            echo "<script>document.location.href = '../ui/header.php?page=pendaftaran-santri'</script>";
+            die;
+            exit;
+        }
+    }
 
     public function create($santri, $kelas, $guru){
         $santri = htmlentities($_POST['id_santri']) ? htmlspecialchars($_POST['id_santri']) : $_POST['id_santri'];

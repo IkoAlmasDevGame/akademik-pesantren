@@ -10,6 +10,8 @@ use model\Meetclass;
 use model\days;
 use model\waktu;
 use model\lesson;
+use model\sppembayaran;
+use model\pembayaran;
 
 class Authentication {
     protected $konfig;
@@ -196,6 +198,17 @@ class Pelajar {
             return false;
         }
     }
+
+    public function select(){
+        $id_santri = htmlentities($_POST['id_santri']) ? htmlspecialchars($_POST['id_santri']) : $_POST['id_santri'];
+        $status = htmlentities($_POST['status']) ? htmlspecialchars($_POST['status']) : $_POST['status'];
+        $data = $this->konfig->statusSelect($status, $id_santri);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
 class Kelas {
@@ -309,6 +322,59 @@ class pelajaran{
         $id = htmlspecialchars($_POST['id_pelajaran']) ? htmlentities($_POST['id_pelajaran']) : $_POST['id_pelajaran'];
         $status = htmlspecialchars($_POST['status']) ? htmlentities($_POST['status']) : $_POST['status'];
         $data = $this->konfig->statusSelect($status, $id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class spp {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new sppembayaran($konfig);
+    }
+
+    public function buat(){
+        $nominal = htmlentities($_POST['nominal']) ? htmlspecialchars($_POST['nominal']) : $_POST['nominal'];
+        $data = $this->konfig->created($nominal);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function hapus(){
+        $id = htmlentities($_GET['id_spp']) ? htmlspecialchars($_GET['id_spp']) : $_GET['id_spp'];
+        $data = $this->konfig->delete($id);
+        if($data === true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
+
+class cashpayment {
+    protected $konfig;
+    public function __construct($konfig)
+    {
+        $this->konfig = new pembayaran($konfig);
+    }
+
+    public function getpayment(){
+        $id_akun = htmlentities($_POST['id_akun']) ? htmlspecialchars($_POST['id_akun']) : $_POST['id_akun'];
+        $id_santri = htmlentities($_POST['id_santri']) ? htmlspecialchars($_POST['id_santri']) : $_POST['id_santri'];
+        $id_kelas = htmlentities($_POST['id_kelas']) ? htmlspecialchars($_POST['id_kelas']) : $_POST['id_kelas'];
+        $tgl = htmlentities($_POST['tgl_bayar']) ? htmlspecialchars($_POST['tgl_bayar']) : $_POST['tgl_bayar'];
+        $bln = htmlentities($_POST['bulan_dibayar']) ? htmlspecialchars($_POST['bulan_dibayar']) : $_POST['bulan_dibayar'];
+        $thn = htmlentities($_POST['tahun_dibayar']) ? htmlspecialchars($_POST['tahun_dibayar']) : $_POST['tahun_dibayar'];
+        $id_spp = htmlentities($_POST['id_spp']) ? htmlspecialchars($_POST['id_spp']) : $_POST['id_spp'];
+        $total = htmlentities($_POST['jumlah_bayar']) ? htmlspecialchars($_POST['jumlah_bayar']) : $_POST['jumlah_bayar'];
+        $data = $this->konfig->payment($id_akun, $id_santri, $id_kelas, $tgl, $bln, $thn, $id_spp, $total);
         if($data === true){
             return true;
         }else{

@@ -71,7 +71,7 @@ jQuery(document).ready(function($) {
         var tamp = $(this).val(); // Ciptakan variabel provinsi
         $.ajax({
             type: 'POST', // Metode pengiriman data menggunakan POST
-            url: '../pembayaran/get_nominal.php', // File yang akan memproses data
+            url: '../pembayaran/get_pembayaran.php', // File yang akan memproses data
             data: 'tamp=' + tamp, // Data yang akan dikirim ke file pemroses
             success: function(data) { // Jika berhasil
                 $('.tampung1').html(data); // Berikan hasil ke id kota
@@ -111,6 +111,15 @@ function previewImageIbu(input) {
             URL.revokeObjectURL(preview.src); // Free memory
         };
     }
+}
+
+function rupiah() {
+    var uang = document.getElementById('nominal').value;
+    uang = Intl.NumberFormat('id-ID', {
+        style: "currency",
+        currency: "IDR"
+    }).format(uang);
+    document.getElementById("nominal_text").innerText = uang;
 }
 </script>
 </body>

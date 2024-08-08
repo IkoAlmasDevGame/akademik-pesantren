@@ -228,7 +228,7 @@ if($_SESSION['role'] == "superadmin"){
                         <span>Kelas</span>
                         <i class="fa-brands fa-meetup fs-5 ms-auto"></i>
                     </a>
-                    <a href="" aria-current="page" class="nav-link">
+                    <a href="?page=spp" aria-current="page" class="nav-link">
                         <i class="bi bi-circle-fill fa-1x"></i>
                         <span>SPP</span>
                         <i class="fa fa-money-bill text-secondary fs-5 ms-auto"></i>
@@ -242,7 +242,7 @@ if($_SESSION['role'] == "superadmin"){
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul class="nav-content collapse" id="transaksi-nav" data-bs-parent="#sidebar-nav">
-                    <a href="" aria-current="page" class="nav-link">
+                    <a href="?page=pembayaran-spp" aria-current="page" class="nav-link">
                         <i class="bi bi-circle-fill fa-1x"></i>
                         <span>Pembayaran SPP</span>
                         <i class="fa fa-money-bill text-secondary fs-5 ms-auto"></i>

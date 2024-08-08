@@ -34,7 +34,7 @@
     border-spacing: 0;
     border: 1px;
     border-style: ridge;
-    width: 1336px;
+    width: 1500px;
 }
 
 .table-layout-guru {
@@ -44,10 +44,10 @@
     border-spacing: 0;
     border: 1px;
     border-style: ridge;
-    width: 1336px;
+    width: 1500px;
 }
 
-@media (min-width: 1336px) {
+@media (min-width: 1500px) {
     .table-layout-santri {
         min-width: 100%;
     }

@@ -59,6 +59,13 @@
                 <form action="" method="post">
                     <input type="search" name="cari" required aria-controls="example2_filter" id="example1_filter">
                 </form>
+                <div class="fs-6 d-flex justify-content-start align-items-start flex-wrap">
+                    Status Santri :
+                    <ol type="1">
+                        <li>Jika Off akan berwarna abu - abu, dan</li>
+                        <li>Jika On akan berwarna biru</li>
+                    </ol>
+                </div>
                 <div class="container">
                     <div class="table-responsive">
                         <div class="d-table">
@@ -74,6 +81,7 @@
                                         <th class="table-layout-2 text-center">Agama Santri</th>
                                         <th class="table-layout-2 text-center">Photo Santri</th>
                                         <th class="table-layout-2 text-center">Jenjang Sekolah</th>
+                                        <th class="table-layout-2 text-center">Status Santri</th>
                                         <th class="table-layout-2 text-center">Document</th>
                                         <th class="table-layout-2 text-center">Optional</th>
                                     </tr>
@@ -109,6 +117,22 @@
                                         </td>
                                         <td class="table-layout-2 text-center">
                                             <?php echo jenjang($isi['jenjang']) ?>
+                                        </td>
+                                        <td class="table-layout-2 text-center">
+                                            <form action="?aksi=santri-selection" method="post">
+                                                <input type="hidden" name="id_santri"
+                                                    value="<?php echo $isi['id_santri']?>">
+                                                <div class="form-switch form-check">
+                                                    <input type="checkbox" name="status" value="0"
+                                                        class="form-check-input" onchange="this.form.submit()"
+                                                        <?php if($isi['status'] == "0"){?> checked <?php } ?> required
+                                                        id=""> off /
+                                                    <input type="checkbox" name="status" value="1"
+                                                        class="form-check-input" onchange="this.form.submit()"
+                                                        <?php if($isi['status'] == "1"){?> checked <?php } ?> required
+                                                        id=""> on
+                                                </div>
+                                            </form>
                                         </td>
                                         <td class="table-layout-2 text-center">
                                             <a href="" data-bs-target="#modalTreeView<?php echo $isi['id_santri']?>"

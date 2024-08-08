@@ -81,7 +81,7 @@
                                         $no = 1;
                                         if(isset($_POST['jenjang'])){
                                         $jenjang = htmlspecialchars($_POST['jenjang']);
-                                        $sql = "SELECT reg_kelas.*, santri.id_santri, santri.nisn_santri, santri.nama_santri, santri.jenjang, kelas.id_kelas, kelas.nama_kelas, kelas.id_guru, guru.id_guru, guru.nama_guru FROM santri left join reg_kelas on reg_kelas.id_santri = santri.id_santri left join kelas on reg_kelas.id_kelas = kelas.id_kelas left join guru on guru.id_guru = kelas.id_guru WHERE santri.jenjang = '$jenjang' order by santri.id_santri asc";
+                                        $sql = "SELECT reg_kelas.*, santri.id_santri, santri.nisn_santri, santri.nama_santri, santri.jenjang, santri.status, kelas.id_kelas, kelas.nama_kelas, kelas.id_guru, guru.id_guru, guru.nama_guru FROM santri left join reg_kelas on reg_kelas.id_santri = santri.id_santri left join kelas on reg_kelas.id_kelas = kelas.id_kelas left join guru on guru.id_guru = kelas.id_guru WHERE santri.jenjang = '$jenjang' && santri.status = '1' order by santri.id_santri asc";
                                         $data = $konfigs->query($sql);
                                         while ($isi = mysqli_fetch_array($data)) {
                                     ?>
@@ -98,9 +98,10 @@
                                             <input type="hidden" name="id_santri" required
                                                 value="<?php echo $isi['id_santri']?>" id="">
                                             <td class="table-layout-2 text-center">
-                                                <select name="id_kelas" onchange="this.form.submit()" required
-                                                    class="form-select" id="">
-                                                    <option value="0">Pilih Kelas</option>
+                                                <select name="id_kelas" type="submit" onchange="this.form.submit()"
+                                                    required class="form-select" id="">
+                                                    <option value="0" <?php if($isi['id_kelas'] == "0"){?> selected
+                                                        <?php } ?>>Pilih Kelas</option>
                                                     <?php 
                                                         $kelas = $konfigs->query("SELECT * FROM kelas order by id_kelas asc");
                                                         while ($ga = mysqli_fetch_array($kelas)) {
@@ -114,9 +115,10 @@
                                                 </select>
                                             </td>
                                             <td class="table-layout-2 text-center">
-                                                <select name="id_guru" onchange="this.form.submit()" required
-                                                    class="form-select" id="">
-                                                    <option value="0">Pilih Wali Guru</option>
+                                                <select name="id_guru" type="submit" onchange="this.form.submit()"
+                                                    required class="form-select" id="">
+                                                    <option value="0" <?php if($isi['id_guru'] == "0"){?> selected
+                                                        <?php } ?>>Pilih Wali Guru</option>
                                                     <?php 
                                                         $guru = $konfigs->query("SELECT * FROM guru order by id_guru asc");
                                                         while ($gs = mysqli_fetch_array($guru)) {
