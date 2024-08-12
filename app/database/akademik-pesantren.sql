@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2024 at 11:46 AM
+-- Generation Time: Aug 08, 2024 at 10:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -68,7 +68,7 @@ INSERT INTO `hari` (`id_hari`, `nama_idn`, `status`) VALUES
 (3, 'rabu', '1'),
 (4, 'kamis', '1'),
 (5, 'jumat', '1'),
-(6, 'sabtu', ''),
+(6, 'sabtu', '0'),
 (7, 'minggu', '0');
 
 -- --------------------------------------------------------
@@ -104,7 +104,7 @@ CREATE TABLE `jam` (
 --
 
 INSERT INTO `jam` (`jam_ke`, `mulai`, `selesai`, `status`) VALUES
-(1, '06:30:00', '07:15:00', '');
+(1, '06:30:00', '07:15:00', '0');
 
 -- --------------------------------------------------------
 
@@ -131,11 +131,11 @@ INSERT INTO `kelas` (`id_kelas`, `kode_kelas`, `nama_kelas`, `kapasitas`, `id_gu
 (4, 'A-012544', 'Kelas 4 M&#039;i', '40', NULL),
 (5, 'A-012545', 'Kelas 5 M&#039;i', '40', NULL),
 (6, 'A-012546', 'Kelas 6 M&#039;i', '40', NULL),
-(7, 'B-012541', 'Kelas 7 MT&#039;s', '40', 1),
+(7, 'B-012541', 'Kelas 7 MT&#039;s', '40', 0),
 (8, 'B-012542', 'Kelas 8 MT&#039;s', '40', NULL),
 (9, 'B-012543', 'Kelas 9 MT&#039;s', '40', NULL),
 (10, 'C-012541', 'Kelas 10 M&#039;A', '40', NULL),
-(11, 'C-012542', 'Kelas 11 M&#039;A', '40', 2),
+(11, 'C-012542', 'Kelas 11 M&#039;A', '40', 0),
 (12, 'C-012543', 'Kelas 12 M&#039;A', '40', NULL);
 
 -- --------------------------------------------------------
@@ -183,6 +183,24 @@ INSERT INTO `pelajaran` (`id_pelajaran`, `kode_pelajaran`, `nama_idn`, `status`)
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE `pembayaran` (
+  `id_pembayaran` int(11) NOT NULL,
+  `id_akun` int(11) NOT NULL,
+  `id_santri` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `tgl_bayar` varchar(2) NOT NULL,
+  `bulan_dibayar` varchar(8) NOT NULL,
+  `tahun_dibayar` varchar(4) NOT NULL,
+  `id_spp` int(11) NOT NULL,
+  `jumlah_bayar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reg_kelas`
 --
 
@@ -197,7 +215,7 @@ CREATE TABLE `reg_kelas` (
 --
 
 INSERT INTO `reg_kelas` (`id_reg_kelas`, `id_santri`, `id_kelas`) VALUES
-(1, '1', '7'),
+(1, '1', '0'),
 (2, '2', '11');
 
 -- --------------------------------------------------------
@@ -224,16 +242,17 @@ CREATE TABLE `santri` (
   `photo_src_ibu` varchar(100) NOT NULL,
   `alamat_rumah` text NOT NULL,
   `kode_pos` varchar(5) NOT NULL,
-  `nomor_telepon` varchar(13) NOT NULL
+  `nomor_telepon` varchar(13) NOT NULL,
+  `status` varchar(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `santri`
 --
 
-INSERT INTO `santri` (`id_santri`, `nisn_santri`, `nama_santri`, `tmpt_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `jenjang`, `photo_src`, `nama_ayah`, `pekerjaan_ayah`, `photo_src_ayah`, `nama_ibu`, `pekerjaan_ibu`, `photo_src_ibu`, `alamat_rumah`, `kode_pos`, `nomor_telepon`) VALUES
-(1, '1021544125', 'Fitri Aisyah Azzahra', 'Bandung Barat', '2011-09-01', 'P', '1', '2', 'susucoklat.jfif', 'Ahmad Sanusi', 'Pegawai Negeri Sipil', 'susustrawberry.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susuvanilla.jfif', 'jl. buto naga swasta', '13525', '0123456789'),
-(2, '1021544125', 'Aurhel Alana', 'Jakarta', '2006-09-14', 'P', '1', '3', 'aurhel_alana.jpg', 'Ahmad Sanusi', 'Montir', 'susuvanilla.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susustrawberry.jfif', 'Jl. Cilegon Raya No. 21', '13525', '0123456789');
+INSERT INTO `santri` (`id_santri`, `id_spp`, `nisn_santri`, `nama_santri`, `tmpt_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `jenjang`, `photo_src`, `nama_ayah`, `pekerjaan_ayah`, `photo_src_ayah`, `nama_ibu`, `pekerjaan_ibu`, `photo_src_ibu`, `alamat_rumah`, `kode_pos`, `nomor_telepon`, `status`) VALUES
+(1, '1021544125', 'Fitri Aisyah Azzahra', 'Bandung Barat', '2011-09-01', 'P', '1', '2', 'susucoklat.jfif', 'Ahmad Sanusi', 'Pegawai Negeri Sipil', 'susustrawberry.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susuvanilla.jfif', 'jl. buto naga swasta', '13525', '0123456789', ''),
+(2, '1021544125', 'Aurhel Alana', 'Jakarta', '2006-09-14', 'P', '1', '3', 'aurhel_alana.jpg', 'Ahmad Sanusi', 'Montir', 'susuvanilla.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susustrawberry.jfif', 'Jl. Cilegon Raya No. 21', '13525', '0123456789', '');
 
 -- --------------------------------------------------------
 
@@ -256,6 +275,25 @@ CREATE TABLE `sistem` (
 
 INSERT INTO `sistem` (`id_sistem`, `nama_sekolah`, `alamat_sekolah`, `nama_kepsek`, `icon`, `flags`) VALUES
 (1, 'Al \' Mujahidin', 'Jl. Tongkol Raya No. 24 C', 'H. Syamsuridin', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spp`
+--
+
+CREATE TABLE `spp` (
+  `id_spp` int(11) NOT NULL,
+  `nominal` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `spp`
+--
+
+INSERT INTO `spp` (`id_spp`, `nominal`) VALUES
+(2, '250000'),
+(1, '300000');
 
 -- --------------------------------------------------------
 
@@ -328,6 +366,12 @@ ALTER TABLE `pelajaran`
   ADD PRIMARY KEY (`id_pelajaran`);
 
 --
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id_pembayaran`);
+
+--
 -- Indexes for table `reg_kelas`
 --
 ALTER TABLE `reg_kelas`
@@ -344,6 +388,13 @@ ALTER TABLE `santri`
 --
 ALTER TABLE `sistem`
   ADD PRIMARY KEY (`id_sistem`);
+
+--
+-- Indexes for table `spp`
+--
+ALTER TABLE `spp`
+  ADD PRIMARY KEY (`id_spp`),
+  ADD KEY `nominal` (`nominal`);
 
 --
 -- Indexes for table `users`
@@ -398,6 +449,12 @@ ALTER TABLE `pelajaran`
   MODIFY `id_pelajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `reg_kelas`
 --
 ALTER TABLE `reg_kelas`
@@ -414,6 +471,12 @@ ALTER TABLE `santri`
 --
 ALTER TABLE `sistem`
   MODIFY `id_sistem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `spp`
+--
+ALTER TABLE `spp`
+  MODIFY `id_spp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
