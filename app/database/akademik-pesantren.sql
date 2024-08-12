@@ -68,7 +68,7 @@ INSERT INTO `hari` (`id_hari`, `nama_idn`, `status`) VALUES
 (3, 'rabu', '1'),
 (4, 'kamis', '1'),
 (5, 'jumat', '1'),
-(6, 'sabtu', ''),
+(6, 'sabtu', '0'),
 (7, 'minggu', '0');
 
 -- --------------------------------------------------------
@@ -104,7 +104,7 @@ CREATE TABLE `jam` (
 --
 
 INSERT INTO `jam` (`jam_ke`, `mulai`, `selesai`, `status`) VALUES
-(1, '06:30:00', '07:15:00', '');
+(1, '06:30:00', '07:15:00', '0');
 
 -- --------------------------------------------------------
 
@@ -135,7 +135,7 @@ INSERT INTO `kelas` (`id_kelas`, `kode_kelas`, `nama_kelas`, `kapasitas`, `id_gu
 (8, 'B-012542', 'Kelas 8 MT&#039;s', '40', NULL),
 (9, 'B-012543', 'Kelas 9 MT&#039;s', '40', NULL),
 (10, 'C-012541', 'Kelas 10 M&#039;A', '40', NULL),
-(11, 'C-012542', 'Kelas 11 M&#039;A', '40', 2),
+(11, 'C-012542', 'Kelas 11 M&#039;A', '40', 0),
 (12, 'C-012543', 'Kelas 12 M&#039;A', '40', NULL);
 
 -- --------------------------------------------------------
@@ -226,7 +226,6 @@ INSERT INTO `reg_kelas` (`id_reg_kelas`, `id_santri`, `id_kelas`) VALUES
 
 CREATE TABLE `santri` (
   `id_santri` int(11) NOT NULL,
-  `id_spp` int(11) NOT NULL DEFAULT 0,
   `nisn_santri` varchar(10) NOT NULL,
   `nama_santri` varchar(100) NOT NULL,
   `tmpt_lahir` varchar(80) NOT NULL,
@@ -252,8 +251,8 @@ CREATE TABLE `santri` (
 --
 
 INSERT INTO `santri` (`id_santri`, `id_spp`, `nisn_santri`, `nama_santri`, `tmpt_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `jenjang`, `photo_src`, `nama_ayah`, `pekerjaan_ayah`, `photo_src_ayah`, `nama_ibu`, `pekerjaan_ibu`, `photo_src_ibu`, `alamat_rumah`, `kode_pos`, `nomor_telepon`, `status`) VALUES
-(1, 0, '1021544125', 'Fitri Aisyah Azzahra', 'Bandung Barat', '2011-09-01', 'P', '1', '2', 'susucoklat.jfif', 'Ahmad Sanusi', 'Pegawai Negeri Sipil', 'susustrawberry.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susuvanilla.jfif', 'jl. buto naga swasta', '13525', '0123456789', ''),
-(2, 0, '1021544125', 'Aurhel Alana', 'Jakarta', '2006-09-14', 'P', '1', '3', 'aurhel_alana.jpg', 'Ahmad Sanusi', 'Montir', 'susuvanilla.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susustrawberry.jfif', 'Jl. Cilegon Raya No. 21', '13525', '0123456789', '');
+(1, '1021544125', 'Fitri Aisyah Azzahra', 'Bandung Barat', '2011-09-01', 'P', '1', '2', 'susucoklat.jfif', 'Ahmad Sanusi', 'Pegawai Negeri Sipil', 'susustrawberry.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susuvanilla.jfif', 'jl. buto naga swasta', '13525', '0123456789', ''),
+(2, '1021544125', 'Aurhel Alana', 'Jakarta', '2006-09-14', 'P', '1', '3', 'aurhel_alana.jpg', 'Ahmad Sanusi', 'Montir', 'susuvanilla.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susustrawberry.jfif', 'Jl. Cilegon Raya No. 21', '13525', '0123456789', '');
 
 -- --------------------------------------------------------
 
