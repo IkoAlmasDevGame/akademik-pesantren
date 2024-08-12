@@ -164,7 +164,7 @@
                                                             class="form-select">
                                                             <?php 
                                                             $now = date('Y');
-                                                            for($i=2020; $i <= $now; $i++){
+                                                            for($i=2019; $i <= $now; $i++){
                                                         ?>
                                                             <option value="<?=$i?>"><?=$i?></option>
                                                             <?php

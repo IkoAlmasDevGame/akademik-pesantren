@@ -256,7 +256,7 @@ if($_SESSION['role'] == "superadmin"){
                     <i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul class="nav-content collapse" id="laporan-nav" data-bs-parent="#sidebar-nav">
-                    <a href="" aria-current="page" class="nav-link">
+                    <a href="?page=laporan-pembayaran" aria-current="page" class="nav-link">
                         <i class="bi bi-circle-fill fa-1x"></i>
                         <span>Rekapitulasi Pembayaran</span>
                         <i class="fa fa-book-open fs-5 shadow text-secondary ms-auto"></i>

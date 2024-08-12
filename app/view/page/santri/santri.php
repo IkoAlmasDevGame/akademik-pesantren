@@ -120,7 +120,7 @@
                                                     <option value="0" <?php if($isi['id_guru'] == "0"){?> selected
                                                         <?php } ?>>Pilih Wali Guru</option>
                                                     <?php 
-                                                        $guru = $konfigs->query("SELECT * FROM guru order by id_guru asc");
+                                                        $guru = $konfigs->query("SELECT * FROM guru where status = '1' order by id_guru asc");
                                                         while ($gs = mysqli_fetch_array($guru)) {
                                                     ?>
                                                     <option value="<?php echo $gs['id_guru'] ?>"

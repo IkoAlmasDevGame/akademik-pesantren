@@ -22,8 +22,6 @@ class pembayaran {
         $insert = "INSERT INTO $table SET id_akun = '$id_akun', id_santri = '$id_santri', id_kelas = '$id_kelas',
          tgl_bayar = '$tgl', bulan_dibayar = '$bln', tahun_dibayar = '$thn', id_spp = '$id_spp', jumlah_bayar = '$total'";
         $data = $this->db->query($insert);
-        $update = "UPDATE santri SET id_spp = '$id_spp' WHERE id_santri = '$id_santri'";
-        $this->db->query($update);
         if($data != null){
             if($data){
                 echo "<script>document.location.href = '../ui/header.php?page=pembayaran-spp'</script>";

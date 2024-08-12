@@ -99,6 +99,10 @@ if(!isset($_GET['page'])){
         case 'pembayaran-spp':
             require_once("../pembayaran/pembayaran.php");
             break;
+            
+        case 'laporan-pembayaran':
+            require_once("../laporan/laporan-pembayaran.php");
+            break;
         
         case 'keluar':
             if(isset($_SESSION['status'])){
