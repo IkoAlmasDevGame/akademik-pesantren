@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2024 at 10:38 AM
+-- Generation Time: Aug 12, 2024 at 07:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `guru` (
 
 INSERT INTO `guru` (`id_guru`, `niptk`, `nama_guru`, `tmpt_lahir`, `tgl_lahir`, `jenis_kelamin`, `photo_src`, `status`) VALUES
 (1, '1150939739987717', 'Amanda Syafira Azzahra', 'Jambi', '2001-04-21', 'P', 'indah_cahya.jpg', ''),
-(2, '7468290530198607', 'Flora Shafiq', 'Banten', '2005-04-04', 'P', 'flora_shafiq.jpg', '');
+(2, '7468290530198607', 'Flora Shafiq', 'Banten', '2005-04-04', 'P', 'flora_shafiq.jpg', '1');
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,7 @@ CREATE TABLE `jam` (
 --
 
 INSERT INTO `jam` (`jam_ke`, `mulai`, `selesai`, `status`) VALUES
-(1, '06:30:00', '07:15:00', '0');
+(1, '06:30:00', '07:15:00', '');
 
 -- --------------------------------------------------------
 
@@ -135,7 +135,7 @@ INSERT INTO `kelas` (`id_kelas`, `kode_kelas`, `nama_kelas`, `kapasitas`, `id_gu
 (8, 'B-012542', 'Kelas 8 MT&#039;s', '40', NULL),
 (9, 'B-012543', 'Kelas 9 MT&#039;s', '40', NULL),
 (10, 'C-012541', 'Kelas 10 M&#039;A', '40', NULL),
-(11, 'C-012542', 'Kelas 11 M&#039;A', '40', 0),
+(11, 'C-012542', 'Kelas 11 M&#039;A', '40', 2),
 (12, 'C-012543', 'Kelas 12 M&#039;A', '40', NULL);
 
 -- --------------------------------------------------------
@@ -198,6 +198,16 @@ CREATE TABLE `pembayaran` (
   `jumlah_bayar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_akun`, `id_santri`, `id_kelas`, `tgl_bayar`, `bulan_dibayar`, `tahun_dibayar`, `id_spp`, `jumlah_bayar`) VALUES
+(1, 2, 2, 11, '12', '8', '2024', 1, 300000),
+(2, 2, 2, 11, '12', '7', '2024', 1, 300000),
+(3, 2, 2, 11, '12', '8', '2024', 2, 250000),
+(4, 2, 2, 11, '12', '7', '2024', 2, 250000);
+
 -- --------------------------------------------------------
 
 --
@@ -250,9 +260,9 @@ CREATE TABLE `santri` (
 -- Dumping data for table `santri`
 --
 
-INSERT INTO `santri` (`id_santri`, `id_spp`, `nisn_santri`, `nama_santri`, `tmpt_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `jenjang`, `photo_src`, `nama_ayah`, `pekerjaan_ayah`, `photo_src_ayah`, `nama_ibu`, `pekerjaan_ibu`, `photo_src_ibu`, `alamat_rumah`, `kode_pos`, `nomor_telepon`, `status`) VALUES
+INSERT INTO `santri` (`id_santri`, `nisn_santri`, `nama_santri`, `tmpt_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `jenjang`, `photo_src`, `nama_ayah`, `pekerjaan_ayah`, `photo_src_ayah`, `nama_ibu`, `pekerjaan_ibu`, `photo_src_ibu`, `alamat_rumah`, `kode_pos`, `nomor_telepon`, `status`) VALUES
 (1, '1021544125', 'Fitri Aisyah Azzahra', 'Bandung Barat', '2011-09-01', 'P', '1', '2', 'susucoklat.jfif', 'Ahmad Sanusi', 'Pegawai Negeri Sipil', 'susustrawberry.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susuvanilla.jfif', 'jl. buto naga swasta', '13525', '0123456789', ''),
-(2, '1021544125', 'Aurhel Alana', 'Jakarta', '2006-09-14', 'P', '1', '3', 'aurhel_alana.jpg', 'Ahmad Sanusi', 'Montir', 'susuvanilla.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susustrawberry.jfif', 'Jl. Cilegon Raya No. 21', '13525', '0123456789', '');
+(2, '1021544125', 'Aurhel Alana', 'Jakarta', '2006-09-14', 'P', '1', '3', 'aurhel_alana.jpg', 'Ahmad Sanusi', 'Montir', 'susuvanilla.jfif', 'Amanda Syahreza Pornama', 'Ibu Rumah Tangga', 'susustrawberry.jfif', 'Jl. Cilegon Raya No. 21', '13525', '0123456789', '1');
 
 -- --------------------------------------------------------
 
@@ -452,7 +462,7 @@ ALTER TABLE `pelajaran`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `reg_kelas`
