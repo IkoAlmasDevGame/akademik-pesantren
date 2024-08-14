@@ -44,28 +44,10 @@
                     <br>
                     <div class="text-dark">Sumbangan Pembinaan Pendidikan</div>
                 </h4>
-                <form action="" method="post">
-                    <div class="d-flex justify-content-start align-items-start flex-wrap">
-                        <div class="form-inline d-flex justify-content-start align-items-center">
-                            <div class="form-label col-sm-2 col-md-3">
-                                <label for="" class="label label-default">Nama Santri :</label>
-                            </div>
-                            <div class="col-sm-3 col-md-4">
-                                <select name="nama_santri" required class="form-select">
-                                    <option value="">Pilih Siswa</option>
-                                    <?php 
-                                    $data = $konfigs->query("SELECT * FROM santri where status = '1' group by nama_santri asc");
-                                        while($isi = $data->fetch_array()){
-                                    ?>
-                                    <option value="<?=$isi['nama_santri']?>">
-                                        <?php echo $isi['nama_santri'] ?>
-                                    </option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="form-label col-sm-2 col-md-3 mx-1">
+                <form action="" method="post" class="form-group">
+                    <div class="form-inline d-flex justify-content-start align-items-start flex-wrap">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="form-label col-sm-3 col-md-4 mx-1">
                                 <label for="" class="label label-default">Bulan Dibayar :</label>
                             </div>
                             <div class="col-sm-3 col-md-4">
@@ -90,18 +72,32 @@
                     </div>
                 </form>
                 <div class="text-start mt-2">
-                    <a href="" aria-current="page" class="btn btn-info">
+                    <a href="?page=laporan-pembayaran" aria-current="page" class="btn btn-info">
                         <i class="fa fa-refresh fa-1x"></i>
                         <span>Refresh Page</span>
                     </a>
-                    <a href="" aria-current="page" class="btn btn-danger">
+                    <a href="?page=file-export" aria-current="page" class="btn btn-danger">
                         <i class="fa fa-file-excel fa-1x"></i>
                         <span>Export File To Excel</span>
                     </a>
-                    <a href="" aria-current="page" class="btn btn-warning">
-                        <i class="fa fa-print fa-1x"></i>
-                        <span>Print File</span>
+                    <?php 
+                        if(isset($_POST['bulan'])){
+                            $bulan = htmlspecialchars($_POST['bulan']);
+                            $pembayaran = "SELECT reg_kelas.*, santri.id_santri, santri.status, pembayaran.id_akun, pembayaran.id_santri, pembayaran.id_kelas, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.id_spp, pembayaran.jumlah_bayar, spp.id_spp, spp.nominal, kelas.id_kelas, kelas.nama_kelas, users.id_akun, users.nama FROM pembayaran left join santri on pembayaran.id_santri = santri.id_santri left join reg_kelas on reg_kelas.id_santri = pembayaran.id_santri left join spp on pembayaran.id_spp = spp.id_spp left join kelas on reg_kelas.id_kelas = kelas.id_kelas && pembayaran.id_kelas = kelas.id_kelas left join users on pembayaran.id_akun = users.id_akun WHERE pembayaran.bulan_dibayar = ? && santri.status = '1' group by pembayaran.id_santri asc";
+                            $data = $configs->prepare($pembayaran);
+                            $data->execute(array($bulan));
+                            $hasil = $data->fetchAll();
+                        foreach($hasil as $s){
+                    ?>
+                    <a href="?page=file-export&bulan_dibayar=<?php echo $s['bulan_dibayar']?>" aria-current="page"
+                        class="btn btn-danger">
+                        <i class="fa fa-file-excel fa-1x"></i>
+                        <span>Export File To Excel</span>
                     </a>
+                    <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
             <div class="card-body mt-1">
@@ -127,12 +123,11 @@
                                     <?php 
                                         $no = 1;
                                         $bayar = 0;
-                                        if(isset($_POST['nama_santri']) && isset($_POST['bulan'])){
-                                            $nama = htmlspecialchars($_POST['nama_santri']);
+                                        if(isset($_POST['bulan'])){
                                             $bulan = htmlspecialchars($_POST['bulan']);
-                                            $pembayaran = "SELECT reg_kelas.*, santri.id_santri, santri.nama_santri, santri.status, pembayaran.id_akun, pembayaran.id_santri, pembayaran.id_kelas, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.id_spp, pembayaran.jumlah_bayar, spp.id_spp, spp.nominal, kelas.id_kelas, kelas.nama_kelas, users.id_akun, users.nama FROM pembayaran left join santri on pembayaran.id_santri = santri.id_santri left join reg_kelas on reg_kelas.id_santri = pembayaran.id_santri left join spp on pembayaran.id_spp = spp.id_spp left join kelas on reg_kelas.id_kelas = kelas.id_kelas && pembayaran.id_kelas = kelas.id_kelas left join users on pembayaran.id_akun = users.id_akun WHERE santri.nama_santri = ? && pembayaran.bulan_dibayar = ? && santri.status = '1' order by pembayaran.id_santri asc";
+                                            $pembayaran = "SELECT reg_kelas.*, santri.id_santri, santri.nama_santri, santri.status, pembayaran.id_akun, pembayaran.id_santri, pembayaran.id_kelas, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.id_spp, pembayaran.jumlah_bayar, spp.id_spp, spp.nominal, kelas.id_kelas, kelas.nama_kelas, users.id_akun, users.nama FROM pembayaran left join santri on pembayaran.id_santri = santri.id_santri left join reg_kelas on reg_kelas.id_santri = pembayaran.id_santri left join spp on pembayaran.id_spp = spp.id_spp left join kelas on reg_kelas.id_kelas = kelas.id_kelas && pembayaran.id_kelas = kelas.id_kelas left join users on pembayaran.id_akun = users.id_akun WHERE santri.status = '1' && pembayaran.bulan_dibayar = ? order by pembayaran.id_santri asc";
                                             $data = $configs->prepare($pembayaran);
-                                            $data->execute(array($nama, $bulan));
+                                            $data->execute(array($bulan));
                                             $hasil = $data->fetchAll();
                                         }else{
                                             $pembayaran = "SELECT reg_kelas.*, santri.id_santri, santri.nama_santri, santri.status, pembayaran.id_akun, pembayaran.id_santri, pembayaran.id_kelas, pembayaran.tgl_bayar, pembayaran.bulan_dibayar, pembayaran.tahun_dibayar, pembayaran.id_spp, pembayaran.jumlah_bayar, spp.id_spp, spp.nominal, kelas.id_kelas, kelas.nama_kelas, users.id_akun, users.nama FROM pembayaran left join santri on pembayaran.id_santri = santri.id_santri left join reg_kelas on reg_kelas.id_santri = pembayaran.id_santri left join spp on pembayaran.id_spp = spp.id_spp left join kelas on reg_kelas.id_kelas = kelas.id_kelas && pembayaran.id_kelas = kelas.id_kelas left join users on pembayaran.id_akun = users.id_akun where santri.status = '1' order by pembayaran.id_santri asc";

@@ -103,6 +103,10 @@ if(!isset($_GET['page'])){
         case 'laporan-pembayaran':
             require_once("../laporan/laporan-pembayaran.php");
             break;
+            
+        case 'file-export':
+            require_once("../laporan/export.php");
+            break;
         
         case 'keluar':
             if(isset($_SESSION['status'])){
